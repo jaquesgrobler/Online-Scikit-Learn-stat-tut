@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Label Propagation learning a complex structure &mdash; scikit-learn 0.11-git documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.11-git',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
+    <link rel="up" title="Examples" href="../index.html" />
+    <link rel="next" title="Decision boundary of label propagation versus SVM on the Iris dataset" href="plot_label_propagation_versus_svm_iris.html" />
+    <link rel="prev" title="Label Propagation digits active learning" href="plot_label_propagation_digits_active_learning.html" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22606712-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../install.html">Download</a></li>
+            <li><a href="../../support.html">Support</a></li>
+            <li><a href="../../user_guide.html">User Guide</a></li>
+            <li><a href="../index.html">Examples</a></li>
+            <li><a href="../../modules/classes.html">Reference</a></li>
+       </ul>
+
+<div class="search_form">
+
+<div id="cse" style="width: 100%;"></div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('016639176250731907682:tjtqbvtvij0');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setAutoComplete(true);
+    customSearchControl.draw('cse', options);
+  }, true);
+</script>
+
+</div>
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="plot_label_propagation_digits_active_learning.html" title="Label Propagation digits active learning"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    Label Propagatio...
+	    </span>
+	    <span class="hiddenrellink">
+	    Label Propagation digits active learning
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="plot_label_propagation_versus_svm_iris.html" title="Decision boundary of label propagation versus SVM on the Iris dataset"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    Decision boundar...
+	    </span>
+	    <span class="hiddenrellink">
+	    Decision boundary of label propagation versus SVM on the Iris dataset
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Examples" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Examples
+	</span>
+	<span class="hiddenrellink">
+	Examples
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for scikit-learn <strong>version 0.11-git</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    <h3>This page</h3>
+	<ul>
+<li><a class="reference internal" href="#">Label Propagation learning a complex structure</a></li>
+</ul>
+
+    
+    </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="label-propagation-learning-a-complex-structure">
+<span id="example-semi-supervised-plot-label-propagation-structure-py"></span><h1>Label Propagation learning a complex structure<a class="headerlink" href="#label-propagation-learning-a-complex-structure" title="Permalink to this headline">¶</a></h1>
+<p>Example of LabelPropagation learning a complex internal structure
+to demonstrate &#8220;manifold learning&#8221;. The outer circle should be
+labeled &#8220;red&#8221; and the inner circle &#8220;blue&#8221;. Because both label groups
+lie inside their own distinct shape, we can see that the labels
+propagate correctly around the circle.</p>
+<img alt="../../_images/plot_label_propagation_structure_1.png" class="align-center" src="../../_images/plot_label_propagation_structure_1.png" />
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../../_downloads/plot_label_propagation_structure.py"><tt class="xref download docutils literal"><span class="pre">plot_label_propagation_structure.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">__doc__</span>
+
+<span class="c"># Authors: Clay Woolam &lt;clay@woolam.org&gt;</span>
+<span class="c">#          Andreas Mueller &lt;amueller@ais.uni-bonn.de&gt;</span>
+<span class="c"># Licence: BSD</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
+<span class="kn">from</span> <span class="nn">sklearn.semi_supervised</span> <span class="kn">import</span> <span class="n">label_propagation</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_circles</span>
+
+<span class="c"># generate ring with inner box</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_circles</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">=</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">outer</span><span class="p">,</span> <span class="n">inner</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
+<span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">outer</span>
+<span class="n">labels</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">inner</span>
+
+<span class="c">###############################################################################</span>
+<span class="c"># Learn with LabelSpreading</span>
+<span class="n">label_spread</span> <span class="o">=</span> <span class="n">label_propagation</span><span class="o">.</span><span class="n">LabelSpreading</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s">&#39;knn&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">label_spread</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+<span class="c">###############################################################################</span>
+<span class="c"># Plot output labels</span>
+<span class="n">output_labels</span> <span class="o">=</span> <span class="n">label_spread</span><span class="o">.</span><span class="n">transduction_</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">8.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plot_outer_labeled</span><span class="p">,</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">outer</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">outer</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;rs&#39;</span><span class="p">)</span>
+<span class="n">plot_unlabeled</span><span class="p">,</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;g.&#39;</span><span class="p">)</span>
+<span class="n">plot_inner_labeled</span><span class="p">,</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">inner</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">inner</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;bs&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="n">plot_outer_labeled</span><span class="p">,</span> <span class="n">plot_inner_labeled</span><span class="p">,</span> <span class="n">plot_unlabeled</span><span class="p">),</span>
+          <span class="p">(</span><span class="s">&#39;Outer Labeled&#39;</span><span class="p">,</span> <span class="s">&#39;Inner Labeled&#39;</span><span class="p">,</span> <span class="s">&#39;Unlabeled&#39;</span><span class="p">),</span> <span class="s">&#39;upper left&#39;</span><span class="p">,</span>
+          <span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;Raw data (2 classes=red and blue)&quot;</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">output_label_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">output_labels</span><span class="p">)</span>
+<span class="n">outer_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">output_label_array</span> <span class="o">==</span> <span class="n">outer</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">inner_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">output_label_array</span> <span class="o">==</span> <span class="n">inner</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plot_outer</span><span class="p">,</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">outer_numbers</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">outer_numbers</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;rs&#39;</span><span class="p">)</span>
+<span class="n">plot_inner</span><span class="p">,</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">inner_numbers</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">inner_numbers</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;bs&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="n">plot_outer</span><span class="p">,</span> <span class="n">plot_inner</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Outer Learned&#39;</span><span class="p">,</span> <span class="s">&#39;Inner Learned&#39;</span><span class="p">),</span>
+          <span class="s">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">numpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;Labels learned with Label Spreading (KNN)&quot;</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.93</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.92</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2010–2011, scikit-learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/auto_examples/semi_supervised/plot_label_propagation_structure.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6. Dataset transformations &mdash; scikit-learn 0.11-git documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.11-git',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="top" title="scikit-learn 0.11-git documentation" href="index.html" />
+    <link rel="up" title="&lt;no title&gt;" href="user_guide.html" />
+    <link rel="next" title="6.1. Preprocessing data" href="modules/preprocessing.html" />
+    <link rel="prev" title="8.6.4. sklearn.ensemble.ExtraTreesRegressor" href="modules/generated/sklearn.ensemble.ExtraTreesRegressor.html" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22606712-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="index.html">
+            <img src="_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="install.html">Download</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="user_guide.html">User Guide</a></li>
+            <li><a href="auto_examples/index.html">Examples</a></li>
+            <li><a href="modules/classes.html">Reference</a></li>
+       </ul>
+
+<div class="search_form">
+
+<div id="cse" style="width: 100%;"></div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('016639176250731907682:tjtqbvtvij0');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setAutoComplete(true);
+    customSearchControl.draw('cse', options);
+  }, true);
+</script>
+
+</div>
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="modules/generated/sklearn.ensemble.ExtraTreesRegressor.html" title="8.6.4. sklearn.ensemble.ExtraTreesRegressor"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    8.6.4. sklearn.e...
+	    </span>
+	    <span class="hiddenrellink">
+	    8.6.4. sklearn.ensemble.ExtraTreesRegressor
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="modules/preprocessing.html" title="6.1. Preprocessing data"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    6.1. Preprocessi...
+	    </span>
+	    <span class="hiddenrellink">
+	    6.1. Preprocessing data
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="user_guide.html" title="<no title>" >
+	Up
+	<br>
+	<span class="smallrellink">
+	<no title>
+	</span>
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for scikit-learn <strong>version 0.11-git</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    <h3>This page</h3>
+	<ul>
+<li><a class="reference internal" href="#">6. Dataset transformations</a><ul>
+</ul>
+</li>
+</ul>
+
+    
+    </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <style type="text/css">
+  div.bodywrapper blockquote {
+      margin: 0 ;
+  }
+
+  div.toctree-wrapper ul {
+      margin-top: 0 ;
+      margin-bottom: 0 ;
+      padding-left: 10px ;
+  }
+
+  li.toctree-l1 {
+      padding: 0 0 0.5em 0 ;
+      list-style-type: none;
+      font-size: 150% ;
+      font-weight: bold;
+      }
+
+  li.toctree-l1 ul {
+      padding-left: 40px ;
+  }
+
+  li.toctree-l2 {
+      font-size: 70% ;
+      list-style-type: square;
+      font-weight: normal;
+      }
+
+  li.toctree-l3 {
+      font-size: 85% ;
+      list-style-type: circle;
+      font-weight: normal;
+      }
+
+</style><div class="section" id="dataset-transformations">
+<span id="data-transforms"></span><h1>6. Dataset transformations<a class="headerlink" href="#dataset-transformations" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/preprocessing.html">6.1. Preprocessing data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#standardization-or-mean-removal-and-variance-scaling">6.1.1. Standardization or Mean Removal and Variance Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#normalization">6.1.2. Normalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/preprocessing.html#binarization">6.1.3. Binarization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/preprocessing.html#feature-binarization">6.1.3.1. Feature binarization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/feature_extraction.html">6.2. Feature extraction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/feature_extraction.html#text-feature-extraction">6.2.1. Text feature extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/feature_extraction.html#image-feature-extraction">6.2.2. Image feature extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules/feature_extraction.html#patch-extraction">6.2.2.1. Patch extraction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/kernel_approximation.html">6.3. Kernel Approximation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/kernel_approximation.html#radial-basis-function-kernel">6.3.1. Radial Basis Function Kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/kernel_approximation.html#additive-chi-squared-kernel">6.3.2. Additive Chi Squared Kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/kernel_approximation.html#skewed-chi-squared-kernel">6.3.3. Skewed Chi Squared Kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/kernel_approximation.html#mathematical-details">6.3.4. Mathematical Details</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2010–2011, scikit-learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="_sources/data_transforms.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

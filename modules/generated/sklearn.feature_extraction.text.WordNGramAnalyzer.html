@@ -1,0 +1,313 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8.7.2.2. sklearn.feature_extraction.text.WordNGramAnalyzer &mdash; scikit-learn 0.11-git documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.11-git',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
+    <link rel="up" title="8. Reference" href="../classes.html" />
+    <link rel="next" title="8.7.2.3. sklearn.feature_extraction.text.CharNGramAnalyzer" href="sklearn.feature_extraction.text.CharNGramAnalyzer.html" />
+    <link rel="prev" title="8.7.2.1. sklearn.feature_extraction.text.RomanPreprocessor" href="sklearn.feature_extraction.text.RomanPreprocessor.html" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22606712-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../install.html">Download</a></li>
+            <li><a href="../../support.html">Support</a></li>
+            <li><a href="../../user_guide.html">User Guide</a></li>
+            <li><a href="../../auto_examples/index.html">Examples</a></li>
+            <li><a href="../classes.html">Reference</a></li>
+       </ul>
+
+<div class="search_form">
+
+<div id="cse" style="width: 100%;"></div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('016639176250731907682:tjtqbvtvij0');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setAutoComplete(true);
+    customSearchControl.draw('cse', options);
+  }, true);
+</script>
+
+</div>
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="sklearn.feature_extraction.text.RomanPreprocessor.html" title="8.7.2.1. sklearn.feature_extraction.text.RomanPreprocessor"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    8.7.2.1. sklearn...
+	    </span>
+	    <span class="hiddenrellink">
+	    8.7.2.1. sklearn.feature_extraction.text.RomanPreprocessor
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="sklearn.feature_extraction.text.CharNGramAnalyzer.html" title="8.7.2.3. sklearn.feature_extraction.text.CharNGramAnalyzer"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    8.7.2.3. sklearn...
+	    </span>
+	    <span class="hiddenrellink">
+	    8.7.2.3. sklearn.feature_extraction.text.CharNGramAnalyzer
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../classes.html" title="8. Reference" >
+	Up
+	<br>
+	<span class="smallrellink">
+	8. Reference
+	</span>
+	<span class="hiddenrellink">
+	8. Reference
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for scikit-learn <strong>version 0.11-git</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    <h3>This page</h3>
+	<ul>
+<li><a class="reference internal" href="#">8.7.2.2. sklearn.feature_extraction.text.WordNGramAnalyzer</a></li>
+</ul>
+
+    
+    </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sklearn-feature-extraction-text-wordngramanalyzer">
+<h1>8.7.2.2. sklearn.feature_extraction.text.WordNGramAnalyzer<a class="headerlink" href="#sklearn-feature-extraction-text-wordngramanalyzer" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="sklearn.feature_extraction.text.WordNGramAnalyzer">
+<em class="property">class </em><tt class="descclassname">sklearn.feature_extraction.text.</tt><tt class="descname">WordNGramAnalyzer</tt><big>(</big><em>charset='utf-8'</em>, <em>min_n=1</em>, <em>max_n=1</em>, <em>preprocessor=RomanPreprocessor()</em>, <em>stop_words='english'</em>, <em>token_pattern=u'\b\w\w+\b'</em>, <em>charset_error='strict'</em><big>)</big><a class="headerlink" href="#sklearn.feature_extraction.text.WordNGramAnalyzer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple analyzer: transform text document into a sequence of word tokens</p>
+<dl class="docutils">
+<dt>This simple implementation does:</dt>
+<dd><ul class="first last simple">
+<li>lower case conversion</li>
+<li>unicode accents removal</li>
+<li>token extraction using unicode regexp word bounderies for token of
+minimum size of 2 symbols (by default)</li>
+<li>output token n-grams (unigram only by default)</li>
+</ul>
+</dd>
+</dl>
+<p>The stop words argument may be &#8220;english&#8221; for a built-in list of English
+stop words or a collection of strings. Note that stop word filtering is
+performed after preprocessing, which may include accent stripping.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>charset: string</strong> :</p>
+<blockquote>
+<div><p>If bytes are given to analyze, this charset is used to decode.</p>
+</div></blockquote>
+<p><strong>min_n: integer</strong> :</p>
+<blockquote>
+<div><p>The lower boundary of the range of n-values for different n-grams to be
+extracted.</p>
+</div></blockquote>
+<p><strong>max_n: integer</strong> :</p>
+<blockquote>
+<div><p>The upper boundary of the range of n-values for different n-grams to be
+extracted. All values of n such that min_n &lt;= n &lt;= max_n will be used.</p>
+</div></blockquote>
+<p><strong>preprocessor: callable</strong> :</p>
+<blockquote>
+<div><p>A callable that preprocesses the text document before tokens are
+extracted.</p>
+</div></blockquote>
+<p><strong>stop_words: string, list, or None</strong> :</p>
+<blockquote>
+<div><p>If a string, it is passed to _check_stop_list and the appropriate stop
+list is returned. The default is &#8220;english&#8221; and is currently the only
+supported string value.
+If a list, that list is assumed to contain stop words, all of which
+will be removed from the resulting tokens.
+If None, no stop words will be used.</p>
+</div></blockquote>
+<p><strong>token_pattern: string</strong> :</p>
+<blockquote>
+<div><p>Regular expression denoting what constitutes a &#8220;token&#8221;.</p>
+</div></blockquote>
+<p><strong>charset_error: {&#8216;strict&#8217;, &#8216;ignore&#8217;, &#8216;replace&#8217;}</strong> :</p>
+<blockquote class="last">
+<div><p>Instruction on what to do if a byte sequence is given to analyze that
+contains characters not of the given <cite>charset</cite>. By default, it is
+&#8216;strict&#8217;, meaning that a UnicodeDecodeError will be raised. Other
+values are &#8216;ignore&#8217; and &#8216;replace&#8217;.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#sklearn.feature_extraction.text.WordNGramAnalyzer.analyze" title="sklearn.feature_extraction.text.WordNGramAnalyzer.analyze"><tt class="xref py py-obj docutils literal"><span class="pre">analyze</span></tt></a>(text_document)</td>
+<td>From documents to token</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#sklearn.feature_extraction.text.WordNGramAnalyzer.get_params" title="sklearn.feature_extraction.text.WordNGramAnalyzer.get_params"><tt class="xref py py-obj docutils literal"><span class="pre">get_params</span></tt></a>([deep])</td>
+<td>Get parameters for the estimator</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#sklearn.feature_extraction.text.WordNGramAnalyzer.set_params" title="sklearn.feature_extraction.text.WordNGramAnalyzer.set_params"><tt class="xref py py-obj docutils literal"><span class="pre">set_params</span></tt></a>(**params)</td>
+<td>Set the parameters of the estimator.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="sklearn.feature_extraction.text.WordNGramAnalyzer.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>charset='utf-8'</em>, <em>min_n=1</em>, <em>max_n=1</em>, <em>preprocessor=RomanPreprocessor()</em>, <em>stop_words='english'</em>, <em>token_pattern=u'\b\w\w+\b'</em>, <em>charset_error='strict'</em><big>)</big><a class="headerlink" href="#sklearn.feature_extraction.text.WordNGramAnalyzer.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sklearn.feature_extraction.text.WordNGramAnalyzer.analyze">
+<tt class="descname">analyze</tt><big>(</big><em>text_document</em><big>)</big><a class="headerlink" href="#sklearn.feature_extraction.text.WordNGramAnalyzer.analyze" title="Permalink to this definition">¶</a></dt>
+<dd><p>From documents to token</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sklearn.feature_extraction.text.WordNGramAnalyzer.get_params">
+<tt class="descname">get_params</tt><big>(</big><em>deep=True</em><big>)</big><a class="headerlink" href="#sklearn.feature_extraction.text.WordNGramAnalyzer.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for the estimator</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>deep: boolean, optional</strong> :</p>
+<blockquote class="last">
+<div><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sklearn.feature_extraction.text.WordNGramAnalyzer.set_params">
+<tt class="descname">set_params</tt><big>(</big><em>**params</em><big>)</big><a class="headerlink" href="#sklearn.feature_extraction.text.WordNGramAnalyzer.set_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the parameters of the estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as pipelines). The former have parameters of the form
+<tt class="docutils literal"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></tt> so that it&#8217;s possible to update each
+component of a nested object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns :</th><td class="field-body"><strong>self</strong> :</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2010–2011, scikit-learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/modules/generated/sklearn.feature_extraction.text.WordNGramAnalyzer.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

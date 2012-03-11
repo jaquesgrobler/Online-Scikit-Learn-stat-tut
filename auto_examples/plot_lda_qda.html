@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Linear and Quadratic Discriminant Analysis with confidence ellipsoid &mdash; scikit-learn 0.11-git documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.11-git',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="top" title="scikit-learn 0.11-git documentation" href="../index.html" />
+    <link rel="up" title="Examples" href="index.html" />
+    <link rel="next" title="Multilabel classification" href="plot_multilabel.html" />
+    <link rel="prev" title="Explicit feature map approximation for RBF kernels" href="plot_kernel_approximation.html" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22606712-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../index.html">
+            <img src="../_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../install.html">Download</a></li>
+            <li><a href="../support.html">Support</a></li>
+            <li><a href="../user_guide.html">User Guide</a></li>
+            <li><a href="index.html">Examples</a></li>
+            <li><a href="../modules/classes.html">Reference</a></li>
+       </ul>
+
+<div class="search_form">
+
+<div id="cse" style="width: 100%;"></div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('016639176250731907682:tjtqbvtvij0');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setAutoComplete(true);
+    customSearchControl.draw('cse', options);
+  }, true);
+</script>
+
+</div>
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="plot_kernel_approximation.html" title="Explicit feature map approximation for RBF kernels"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    Explicit feature...
+	    </span>
+	    <span class="hiddenrellink">
+	    Explicit feature map approximation for RBF kernels
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="plot_multilabel.html" title="Multilabel classification"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    Multilabel class...
+	    </span>
+	    <span class="hiddenrellink">
+	    Multilabel classification
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="index.html" title="Examples" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Examples
+	</span>
+	<span class="hiddenrellink">
+	Examples
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for scikit-learn <strong>version 0.11-git</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    <h3>This page</h3>
+	<ul>
+<li><a class="reference internal" href="#">Linear and Quadratic Discriminant Analysis with confidence ellipsoid</a></li>
+</ul>
+
+    
+    </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="linear-and-quadratic-discriminant-analysis-with-confidence-ellipsoid">
+<span id="example-plot-lda-qda-py"></span><h1>Linear and Quadratic Discriminant Analysis with confidence ellipsoid<a class="headerlink" href="#linear-and-quadratic-discriminant-analysis-with-confidence-ellipsoid" title="Permalink to this headline">¶</a></h1>
+<p>Plot the confidence ellipsoids of each class and decision boundary</p>
+<img alt="../_images/plot_lda_qda_1.png" class="align-center" src="../_images/plot_lda_qda_1.png" />
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../_downloads/plot_lda_qda.py"><tt class="xref download docutils literal"><span class="pre">plot_lda_qda.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">__doc__</span>
+
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">linalg</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="kn">as</span> <span class="nn">mpl</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.lda</span> <span class="kn">import</span> <span class="n">LDA</span>
+<span class="kn">from</span> <span class="nn">sklearn.qda</span> <span class="kn">import</span> <span class="n">QDA</span>
+
+<span class="c">###############################################################################</span>
+<span class="c"># colormap</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="p">(</span><span class="s">&#39;red_blue_classes&#39;</span><span class="p">,</span>
+    <span class="p">{</span><span class="s">&#39;red&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)],</span>
+     <span class="s">&#39;green&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)],</span>
+     <span class="s">&#39;blue&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]})</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+
+
+<span class="c">###############################################################################</span>
+<span class="c"># generate datasets</span>
+<span class="k">def</span> <span class="nf">dataset_fixed_cov</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Generate 2 Gaussians samples with the same covariance matrix&#39;&#39;&#39;</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">2</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.23</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.83</span><span class="p">,</span> <span class="o">.</span><span class="mi">23</span><span class="p">]])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">C</span><span class="p">),</span>
+              <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">C</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+
+
+<span class="k">def</span> <span class="nf">dataset_cov</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Generate 2 Gaussians samples with different covariance matrices&#39;&#39;&#39;</span>
+    <span class="n">n</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">2</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="o">.</span><span class="mi">7</span><span class="p">]])</span> <span class="o">*</span> <span class="mf">2.</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">C</span><span class="p">),</span>
+              <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">])]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+
+
+<span class="c">###############################################################################</span>
+<span class="c"># plot functions</span>
+<span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">fig_index</span><span class="p">):</span>
+    <span class="n">splot</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fig_index</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fig_index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Linear Discriminant Analysis&#39;</span><span class="p">)</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Data with fixed covariance&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fig_index</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Quadratic Discriminant Analysis&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">fig_index</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Data with varying covariances&#39;</span><span class="p">)</span>
+
+    <span class="n">tp</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">y_pred</span><span class="p">)</span>  <span class="c"># True Positive</span>
+    <span class="n">tp0</span><span class="p">,</span> <span class="n">tp1</span> <span class="o">=</span> <span class="n">tp</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span> <span class="n">tp</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">X0</span><span class="p">,</span> <span class="n">X1</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">X0_tp</span><span class="p">,</span> <span class="n">X0_fp</span> <span class="o">=</span> <span class="n">X0</span><span class="p">[</span><span class="n">tp0</span><span class="p">],</span> <span class="n">X0</span><span class="p">[</span><span class="n">tp0</span> <span class="o">!=</span> <span class="bp">True</span><span class="p">]</span>
+    <span class="n">X1_tp</span><span class="p">,</span> <span class="n">X1_fp</span> <span class="o">=</span> <span class="n">X1</span><span class="p">[</span><span class="n">tp1</span><span class="p">],</span> <span class="n">X1</span><span class="p">[</span><span class="n">tp1</span> <span class="o">!=</span> <span class="bp">True</span><span class="p">]</span>
+    <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="c"># class 0: dots</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X0_tp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X0_tp</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X0_fp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X0_fp</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#990000&#39;</span><span class="p">)</span>  <span class="c"># dark red</span>
+
+    <span class="c"># class 1: dots</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X1_tp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X1_tp</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X1_fp</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X1_fp</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;#000099&#39;</span><span class="p">)</span>  <span class="c"># dark blue</span>
+
+    <span class="c"># class 0 and 1 : areas</span>
+    <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span>
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">xlim</span><span class="p">()</span>
+    <span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">ylim</span><span class="p">()</span>
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">nx</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">ny</span><span class="p">))</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;red_blue_classes&#39;</span><span class="p">,</span>
+                        <span class="n">norm</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">))</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+
+    <span class="c"># means</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lda</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">lda</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lda</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">lda</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">splot</span>
+
+
+<span class="k">def</span> <span class="nf">plot_ellipse</span><span class="p">(</span><span class="n">splot</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="mi">180</span> <span class="o">*</span> <span class="n">angle</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c"># convert to degrees</span>
+    <span class="c"># filled gaussian at 2 standard deviation</span>
+    <span class="n">ell</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">Ellipse</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">,</span>
+                                            <span class="mi">180</span> <span class="o">+</span> <span class="n">angle</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">ell</span><span class="o">.</span><span class="n">set_clip_box</span><span class="p">(</span><span class="n">splot</span><span class="o">.</span><span class="n">bbox</span><span class="p">)</span>
+    <span class="n">ell</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">splot</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">ell</span><span class="p">)</span>
+    <span class="n">splot</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(())</span>
+    <span class="n">splot</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(())</span>
+
+
+<span class="k">def</span> <span class="nf">plot_lda_cov</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span> <span class="n">splot</span><span class="p">):</span>
+    <span class="n">plot_ellipse</span><span class="p">(</span><span class="n">splot</span><span class="p">,</span> <span class="n">lda</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">lda</span><span class="o">.</span><span class="n">covariance_</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">plot_ellipse</span><span class="p">(</span><span class="n">splot</span><span class="p">,</span> <span class="n">lda</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">lda</span><span class="o">.</span><span class="n">covariance_</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">plot_qda_cov</span><span class="p">(</span><span class="n">qda</span><span class="p">,</span> <span class="n">splot</span><span class="p">):</span>
+    <span class="n">plot_ellipse</span><span class="p">(</span><span class="n">splot</span><span class="p">,</span> <span class="n">qda</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">qda</span><span class="o">.</span><span class="n">covariances_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;red&#39;</span><span class="p">)</span>
+    <span class="n">plot_ellipse</span><span class="p">(</span><span class="n">splot</span><span class="p">,</span> <span class="n">qda</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">qda</span><span class="o">.</span><span class="n">covariances_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="c">###############################################################################</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">dataset_fixed_cov</span><span class="p">(),</span> <span class="n">dataset_cov</span><span class="p">()]):</span>
+    <span class="c"># LDA</span>
+    <span class="n">lda</span> <span class="o">=</span> <span class="n">LDA</span><span class="p">()</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">store_covariance</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">splot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">fig_index</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plot_lda_cov</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span> <span class="n">splot</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">&#39;tight&#39;</span><span class="p">)</span>
+
+    <span class="c"># QDA</span>
+    <span class="n">qda</span> <span class="o">=</span> <span class="n">QDA</span><span class="p">()</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">qda</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">store_covariances</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">splot</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">qda</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">fig_index</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plot_qda_cov</span><span class="p">(</span><span class="n">qda</span><span class="p">,</span> <span class="n">splot</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">&#39;LDA vs QDA&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2010–2011, scikit-learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../_sources/auto_examples/plot_lda_qda.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>
