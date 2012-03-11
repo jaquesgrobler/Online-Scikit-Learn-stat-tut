@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.9. Ensemble methods &mdash; scikit-learn 0.11-git documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.11-git',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="top" title="scikit-learn 0.11-git documentation" href="../index.html" />
+    <link rel="up" title="3. Supervised learning" href="../supervised_learning.html" />
+    <link rel="next" title="3.10. Multiclass and multilabel algorithms" href="multiclass.html" />
+    <link rel="prev" title="3.8. Decision Trees" href="tree.html" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22606712-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../index.html">
+            <img src="../_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../install.html">Download</a></li>
+            <li><a href="../support.html">Support</a></li>
+            <li><a href="../user_guide.html">User Guide</a></li>
+            <li><a href="../auto_examples/index.html">Examples</a></li>
+            <li><a href="classes.html">Reference</a></li>
+       </ul>
+
+<div class="search_form">
+
+<div id="cse" style="width: 100%;"></div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('016639176250731907682:tjtqbvtvij0');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setAutoComplete(true);
+    customSearchControl.draw('cse', options);
+  }, true);
+</script>
+
+</div>
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="tree.html" title="3.8. Decision Trees"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    3.8. Decision Tr...
+	    </span>
+	    <span class="hiddenrellink">
+	    3.8. Decision Trees
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="multiclass.html" title="3.10. Multiclass and multilabel algorithms"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    3.10. Multiclass...
+	    </span>
+	    <span class="hiddenrellink">
+	    3.10. Multiclass and multilabel algorithms
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../supervised_learning.html" title="3. Supervised learning" >
+	Up
+	<br>
+	<span class="smallrellink">
+	3. Supervised le...
+	</span>
+	<span class="hiddenrellink">
+	3. Supervised learning
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for scikit-learn <strong>version 0.11-git</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    <h3>This page</h3>
+	<ul>
+<li><a class="reference internal" href="#">3.9. Ensemble methods</a><ul>
+<li><a class="reference internal" href="#forests-of-randomized-trees">3.9.1. Forests of randomized trees</a><ul>
+<li><a class="reference internal" href="#random-forests">3.9.1.1. Random Forests</a></li>
+<li><a class="reference internal" href="#extremely-randomized-trees">3.9.1.2. Extremely Randomized Trees</a></li>
+<li><a class="reference internal" href="#parameters">3.9.1.3. Parameters</a></li>
+<li><a class="reference internal" href="#parallelization">3.9.1.4. Parallelization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+    </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ensemble-methods">
+<span id="ensemble"></span><h1>3.9. Ensemble methods<a class="headerlink" href="#ensemble-methods" title="Permalink to this headline">¶</a></h1>
+<p>The goal of <strong>ensemble methods</strong> is to combine the predictions of several
+models built with a given learning algorithm in order to improve
+generalizability / robustness over a single model.</p>
+<p>Two families of ensemble methods are usually distinguished:</p>
+<ul>
+<li><p class="first">In <strong>averaging methods</strong>, the driving principle is to build several
+models independently and then to average their predictions. On average,
+the combined model is usually better than any of the single model
+because its variance is reduced.</p>
+<p><strong>Examples:</strong> Bagging methods, <a class="reference internal" href="#forest"><em>Forests of randomized trees</em></a>...</p>
+</li>
+<li><p class="first">By contrast, in <strong>boosting methods</strong>, models are built sequentially and one
+tries to reduce the bias of the combined model. The motivation is to combine
+several weak models to produce a powerful ensemble.</p>
+<p><strong>Examples:</strong> AdaBoost, Least Squares Boosting, Gradient Tree Boosting...</p>
+</li>
+</ul>
+<div class="section" id="forests-of-randomized-trees">
+<span id="forest"></span><h2>3.9.1. Forests of randomized trees<a class="headerlink" href="#forests-of-randomized-trees" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="classes.html#module-sklearn.ensemble" title="sklearn.ensemble"><tt class="xref py py-mod docutils literal"><span class="pre">sklearn.ensemble</span></tt></a> module includes two averaging algorithms based
+on randomized <a class="reference internal" href="tree.html#tree"><em>decision trees</em></a>: the RandomForest algorithm
+and the Extra-Trees method. Both algorithms are perturb-and-combine
+techniques <a class="reference internal" href="#b1998">[B1998]</a> specifically designed for trees. This means a diverse
+set of classifiers is created by introducing randomness in the classifier
+construction.  The prediction of the ensemble is given as the averaged
+prediction of the individual classifiers.</p>
+<p>As other classifiers, forest classifiers have to be fitted with two
+arrays: an array X of size <tt class="docutils literal"><span class="pre">[n_samples,</span> <span class="pre">n_features]</span></tt> holding the
+training samples, and an array Y of size <tt class="docutils literal"><span class="pre">[n_samples]</span></tt> holding the
+target values (class labels) for the training samples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="random-forests">
+<h3>3.9.1.1. Random Forests<a class="headerlink" href="#random-forests" title="Permalink to this headline">¶</a></h3>
+<p>In random forests (see <a class="reference internal" href="generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier" title="sklearn.ensemble.RandomForestClassifier"><tt class="xref py py-class docutils literal"><span class="pre">RandomForestClassifier</span></tt></a> and
+<a class="reference internal" href="generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor" title="sklearn.ensemble.RandomForestRegressor"><tt class="xref py py-class docutils literal"><span class="pre">RandomForestRegressor</span></tt></a> classes), each tree in the ensemble is
+built from a sample drawn with replacement (i.e., a bootstrap sample)
+from the training set. In addition, when splitting a node during the
+construction of the tree, the split that is chosen is no longer the
+best split among all features. Instead, the split that is picked is the
+best split among a random subset of the features. As a result of this
+randomness, the bias of the forest usually slightly increases (with
+respect to the bias of a single non-random tree) but, due to averaging,
+its variance also decreases, usually more than compensating for the
+increase in bias, hence yielding an overall better model.</p>
+<p>In contrast to the original publication <a class="reference internal" href="#b2001">[B2001]</a>, the scikit-learn
+implementation combines classifiers by averaging their probabilistic
+prediction, instead of letting each classifier vote for a single class.</p>
+</div>
+<div class="section" id="extremely-randomized-trees">
+<h3>3.9.1.2. Extremely Randomized Trees<a class="headerlink" href="#extremely-randomized-trees" title="Permalink to this headline">¶</a></h3>
+<p>In extremely randomized trees (see <a class="reference internal" href="generated/sklearn.ensemble.ExtraTreesClassifier.html#sklearn.ensemble.ExtraTreesClassifier" title="sklearn.ensemble.ExtraTreesClassifier"><tt class="xref py py-class docutils literal"><span class="pre">ExtraTreesClassifier</span></tt></a>
+and <a class="reference internal" href="generated/sklearn.ensemble.ExtraTreesRegressor.html#sklearn.ensemble.ExtraTreesRegressor" title="sklearn.ensemble.ExtraTreesRegressor"><tt class="xref py py-class docutils literal"><span class="pre">ExtraTreesRegressor</span></tt></a> classes), randomness goes one step
+further in the way splits are computed. As in random forests, a random
+subset of candidate features is used, but instead of looking for the
+most discriminative thresholds, thresholds are drawn at random for each
+candidate feature and the best of these randomly-generated thresholds is
+picked as the splitting rule. This usually allows to reduce the variance
+of the model a bit more, at the expense of a slightly greater increase
+in bias:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesClassifier</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>                             
+<span class="go">0.978...</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>                             
+<span class="go">0.999...</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">min_samples_split</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.999</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../auto_examples/ensemble/plot_forest_iris.html"><img alt="../_images/plot_forest_iris_11.png" src="../_images/plot_forest_iris_11.png" style="width: 600.0px; height: 450.0px;" /></a>
+</div>
+</div>
+<div class="section" id="parameters">
+<h3>3.9.1.3. Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<p>The main parameters to adjust when using these methods is <tt class="docutils literal"><span class="pre">n_estimators</span></tt>
+and <tt class="docutils literal"><span class="pre">max_features</span></tt>. The former is the number of trees in the forest. The
+larger the better, but also the longer it will take to compute. In
+addition, note that results will stop getting significantly better
+beyond a critical number of trees. The latter is the size of the random
+subsets of features to consider when splitting a node. The lower the
+greater the reduction of variance, but also the greater the increase in
+bias. Empiricial good default values are <tt class="docutils literal"><span class="pre">max_features=n_features</span></tt>
+for regression problems, and <tt class="docutils literal"><span class="pre">max_features=sqrt(n_features)</span></tt> for
+classification tasks (where <tt class="docutils literal"><span class="pre">n_features</span></tt> is the number of features
+in the data). The best results are also usually reached when setting
+<tt class="docutils literal"><span class="pre">max_depth=None</span></tt> in combination with <tt class="docutils literal"><span class="pre">min_samples_split=1</span></tt> (i.e.,
+when fully developping the trees). Bear in mind though that these values
+are usually not optimal. The best parameter values should always be cross-
+validated. In addition, note that bootstrap samples are used by default
+in random forests (<tt class="docutils literal"><span class="pre">bootstrap=True</span></tt>) while the default strategy is to
+use the original dataset for building extra-trees (<tt class="docutils literal"><span class="pre">bootstrap=False</span></tt>).</p>
+<p>When training on large datasets, where runtime and memory requirements
+are important, it might also be beneficial to adjust the <tt class="docutils literal"><span class="pre">min_density</span></tt>
+parameter, that controls a heuristic for speeding up computations in
+each tree.  See <a class="reference internal" href="tree.html#tree-complexity"><em>Complexity of trees</em></a> for details.</p>
+</div>
+<div class="section" id="parallelization">
+<h3>3.9.1.4. Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this headline">¶</a></h3>
+<p>Finally, this module also features the parallel construction of the trees
+and the parallel computation of the predictions through the <tt class="docutils literal"><span class="pre">n_jobs</span></tt>
+parameter. If <tt class="docutils literal"><span class="pre">n_jobs=k</span></tt> then computations are partitioned into
+<tt class="docutils literal"><span class="pre">k</span></tt> jobs, and run on <tt class="docutils literal"><span class="pre">k</span></tt> cores of the machine. If <tt class="docutils literal"><span class="pre">n_jobs=-1</span></tt>
+then all cores available on the machine are used. Note that because of
+inter-process communication overhead, the speedup might not be linear
+(i.e., using <tt class="docutils literal"><span class="pre">k</span></tt> jobs will unfortunately not be <tt class="docutils literal"><span class="pre">k</span></tt> times as
+fast). Significant speedup can still be achieved though when building
+a large number of trees, or when building a single tree requires a fair
+amount of time (e.g., on large datasets).</p>
+<div class="topic">
+<p class="topic-title first">Examples:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../auto_examples/ensemble/plot_forest_iris.html#example-ensemble-plot-forest-iris-py"><em>Plot the decision surfaces of ensembles of trees on the iris dataset</em></a></li>
+<li><a class="reference internal" href="../auto_examples/ensemble/plot_forest_importances_faces.html#example-ensemble-plot-forest-importances-faces-py"><em>Pixel importances with a parallel forest of trees</em></a></li>
+</ul>
+</div>
+<div class="topic">
+<p class="topic-title first">References</p>
+<table class="docutils citation" frame="void" id="b2001" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[B2001]</a></td><td>Leo Breiman, &#8220;Random Forests&#8221;, Machine Learning, 45(1), 5-32, 2001.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="b1998" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[B1998]</a></td><td>Leo Breiman, &#8220;Arcing Classifiers&#8221;, Annals of Statistics 1998.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="gew2006" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[GEW2006]</td><td>Pierre Geurts, Damien Ernst., and Louis Wehenkel, &#8220;Extremely randomized
+trees&#8221;, Machine Learning, 63(1), 3-42, 2006.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2010–2011, scikit-learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../_sources/modules/ensemble.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sparse inverse covariance estimation &mdash; scikit-learn 0.11-git documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.11-git',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
+    <link rel="up" title="Examples" href="../index.html" />
+    <link rel="next" title="Faces dataset decompositions" href="../decomposition/plot_faces_decomposition.html" />
+    <link rel="prev" title="Robust vs Empirical covariance estimate" href="plot_robust_vs_empirical_covariance.html" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22606712-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img src="../../_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../../install.html">Download</a></li>
+            <li><a href="../../support.html">Support</a></li>
+            <li><a href="../../user_guide.html">User Guide</a></li>
+            <li><a href="../index.html">Examples</a></li>
+            <li><a href="../../modules/classes.html">Reference</a></li>
+       </ul>
+
+<div class="search_form">
+
+<div id="cse" style="width: 100%;"></div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('016639176250731907682:tjtqbvtvij0');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setAutoComplete(true);
+    customSearchControl.draw('cse', options);
+  }, true);
+</script>
+
+</div>
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="plot_robust_vs_empirical_covariance.html" title="Robust vs Empirical covariance estimate"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    Robust vs Empiri...
+	    </span>
+	    <span class="hiddenrellink">
+	    Robust vs Empirical covariance estimate
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="../decomposition/plot_faces_decomposition.html" title="Faces dataset decompositions"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    Faces dataset de...
+	    </span>
+	    <span class="hiddenrellink">
+	    Faces dataset decompositions
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../index.html" title="Examples" >
+	Up
+	<br>
+	<span class="smallrellink">
+	Examples
+	</span>
+	<span class="hiddenrellink">
+	Examples
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for scikit-learn <strong>version 0.11-git</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    <h3>This page</h3>
+	<ul>
+<li><a class="reference internal" href="#">Sparse inverse covariance estimation</a></li>
+</ul>
+
+    
+    </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sparse-inverse-covariance-estimation">
+<span id="example-covariance-plot-sparse-cov-py"></span><h1>Sparse inverse covariance estimation<a class="headerlink" href="#sparse-inverse-covariance-estimation" title="Permalink to this headline">¶</a></h1>
+<p>Using the GraphLasso estimator to learn a covariance and sparse precision
+from a small number of samples.</p>
+<p>To estimate a probabilistic model (e.g. a Gaussian model), estimating the
+precision matrix, that is the inverse covariance matrix, is as important
+as estimating the covariance matrix. Indeed a Gaussian model is
+parametrized by the precision matrix.</p>
+<p>To be in favorable recovery conditions, we sample the data from a model
+with a sparse inverse covariance matrix. In addition, we ensure that the
+data is not too much correlated (limiting the largest coefficient of the
+precision matrix) and that there a no small coefficients in the
+precision matrix that cannot be recovered. In addition, with a small
+number of observations, it is easier to recover a correlation matrix
+rather than a covariance, thus we scale the time series.</p>
+<p>Here, the number of samples is slightly larger than the number of
+dimensions, thus the empirical covariance is still invertible. However,
+as the observations are strongly correlated, the empirical covariance
+matrix is ill-conditioned and as a result its inverse &#8211;the empirical
+precision matrix&#8211; is very far from the ground truth.</p>
+<p>If we use l2 shrinkage, as with the Ledoit-Wolf estimator, as the number
+of samples is small, we need to shrink a lot. As a result, the
+Ledoit-Wolf precision is fairly close to the ground truth precision, that
+is not far from being diagonal, but the off-diagonal structure is lost.</p>
+<p>The l1-penalized estimator can recover part of this off-diagonal
+structure. It learns a sparse precision. It is not able to
+recover the exact sparsity pattern: it detects too many non-zero
+coefficients. However, the highest non-zero coefficients of the l1
+estimated correspond to the non-zero coefficients in the ground truth.
+Finally, the coefficients of the l1 precision estimate are biased toward
+zero: because of the penalty, they are all smaller than the corresponding
+ground truth value, as can be seen on the figure.</p>
+<p>Note that, the color range of the precision matrices is tweeked to
+improve readibility of the figure. The full range of values of the
+empirical precision is not displayed.</p>
+<p>The alpha parameter of the GraphLasso setting the sparsity of the model is
+set by internal cross-validation in the GraphLassoCV. As can be
+seen on figure 2, the grid to compute the cross-validation score is
+iteratively refined in the neighborhood of the maximum.</p>
+<ul class="horizontal">
+<li><a class="first reference internal image-reference" href="../../_images/plot_sparse_cov_2.png"><img alt="../../_images/plot_sparse_cov_2.png" src="../../_images/plot_sparse_cov_2.png" style="width: 188.0px; height: 141.0px;" /></a>
+</li>
+<li><a class="first reference internal image-reference" href="../../_images/plot_sparse_cov_1.png"><img alt="../../_images/plot_sparse_cov_1.png" src="../../_images/plot_sparse_cov_1.png" style="width: 470.0px; height: 282.0px;" /></a>
+</li>
+</ul>
+<p><strong>Python source code:</strong> <a class="reference download internal" href="../../_downloads/plot_sparse_cov.py"><tt class="xref download docutils literal"><span class="pre">plot_sparse_cov.py</span></tt></a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">__doc__</span>
+<span class="c"># author: Gael Varoquaux &lt;gael.varoquaux@inria.fr&gt;</span>
+<span class="c"># License: BSD Style</span>
+<span class="c"># Copyright: INRIA</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">linalg</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_sparse_spd_matrix</span>
+<span class="kn">from</span> <span class="nn">sklearn.covariance</span> <span class="kn">import</span> <span class="n">GraphLassoCV</span><span class="p">,</span> <span class="n">ledoit_wolf</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
+
+<span class="c">##############################################################################</span>
+<span class="c"># Generate the data</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="n">prng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">prec</span> <span class="o">=</span> <span class="n">make_sparse_spd_matrix</span><span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">98</span><span class="p">,</span>
+                              <span class="n">smallest_coef</span><span class="o">=.</span><span class="mi">4</span><span class="p">,</span>
+                              <span class="n">largest_coef</span><span class="o">=.</span><span class="mi">7</span><span class="p">,</span>
+                              <span class="n">random_state</span><span class="o">=</span><span class="n">prng</span><span class="p">)</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">prec</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span>
+<span class="n">cov</span> <span class="o">/=</span> <span class="n">d</span>
+<span class="n">cov</span> <span class="o">/=</span> <span class="n">d</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">prec</span> <span class="o">*=</span> <span class="n">d</span>
+<span class="n">prec</span> <span class="o">*=</span> <span class="n">d</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">prng</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">),</span> <span class="n">cov</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_samples</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">-=</span> <span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">/=</span> <span class="n">X</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c">##############################################################################</span>
+<span class="c"># Estimate the covariance</span>
+<span class="n">emp_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_samples</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">GraphLassoCV</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">cov_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">covariance_</span>
+<span class="n">prec_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">precision_</span>
+
+<span class="n">lw_cov_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ledoit_wolf</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">lw_prec_</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">lw_cov_</span><span class="p">)</span>
+
+<span class="c">##############################################################################</span>
+<span class="c"># Plot the results</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
+
+<span class="c"># plot the covariances</span>
+<span class="n">covs</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;Empirical&#39;</span><span class="p">,</span> <span class="n">emp_cov</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;Ledoit-Wolf&#39;</span><span class="p">,</span> <span class="n">lw_cov_</span><span class="p">),</span>
+        <span class="p">(</span><span class="s">&#39;GraphLasso&#39;</span><span class="p">,</span> <span class="n">cov_</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;True&#39;</span><span class="p">,</span> <span class="n">cov</span><span class="p">)]</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">cov_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">this_cov</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">covs</span><span class="p">):</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">this_cov</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vmax</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdBu_r</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">yticks</span><span class="p">(())</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> covariance&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+
+<span class="c"># plot the precisions</span>
+<span class="n">precs</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;Empirical&#39;</span><span class="p">,</span> <span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">emp_cov</span><span class="p">)),</span> <span class="p">(</span><span class="s">&#39;Ledoit-Wolf&#39;</span><span class="p">,</span> <span class="n">lw_prec_</span><span class="p">),</span>
+         <span class="p">(</span><span class="s">&#39;GraphLasso&#39;</span><span class="p">,</span> <span class="n">prec_</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;True&#39;</span><span class="p">,</span> <span class="n">prec</span><span class="p">)]</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="o">.</span><span class="mi">9</span> <span class="o">*</span> <span class="n">prec_</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">this_prec</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">precs</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">this_prec</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+              <span class="n">interpolation</span><span class="o">=</span><span class="s">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vmax</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+              <span class="n">cmap</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdBu_r</span><span class="p">)</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">yticks</span><span class="p">(())</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s"> precision&#39;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_bgcolor</span><span class="p">(</span><span class="s">&#39;.7&#39;</span><span class="p">)</span>
+
+<span class="c"># plot the model selection metric</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="o">.</span><span class="mi">15</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">,</span> <span class="o">.</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">cv_alphas_</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">cv_scores</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="s">&#39;o-&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">alpha_</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;.5&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Model selection&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;Cross-validation score&#39;</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;alpha&#39;</span><span class="p">)</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2010–2011, scikit-learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../../_sources/auto_examples/covariance/plot_sparse_cov.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>

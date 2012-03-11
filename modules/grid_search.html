@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.2. Grid Search &mdash; scikit-learn 0.11-git documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.11-git',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="top" title="scikit-learn 0.11-git documentation" href="../index.html" />
+    <link rel="up" title="5. Model Selection" href="../model_selection.html" />
+    <link rel="next" title="8.15.1.4. sklearn.linear_model.RidgeCV" href="generated/sklearn.linear_model.RidgeCV.html" />
+    <link rel="prev" title="5.1. Cross-Validation" href="cross_validation.html" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22606712-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="../index.html">
+            <img src="../_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+            <li><a href="../install.html">Download</a></li>
+            <li><a href="../support.html">Support</a></li>
+            <li><a href="../user_guide.html">User Guide</a></li>
+            <li><a href="../auto_examples/index.html">Examples</a></li>
+            <li><a href="classes.html">Reference</a></li>
+       </ul>
+
+<div class="search_form">
+
+<div id="cse" style="width: 100%;"></div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('016639176250731907682:tjtqbvtvij0');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setAutoComplete(true);
+    customSearchControl.draw('cse', options);
+  }, true);
+</script>
+
+</div>
+          </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <div class="sphinxsidebar">
+	<div class="rel">
+	
+	<!-- rellinks[1:] is an ugly hack to avoid link to module
+	    index  -->
+	<div class="rellink">
+	<a href="cross_validation.html" title="5.1. Cross-Validation"
+	    accesskey="P">Previous
+	    <br>
+	    <span class="smallrellink">
+	    5.1. Cross-Valid...
+	    </span>
+	    <span class="hiddenrellink">
+	    5.1. Cross-Validation
+	    </span>
+	    
+	    </a>
+	</div>
+	    <div class="spacer">
+	    &nbsp;
+	    </div>
+	
+	<div class="rellink">
+	<a href="generated/sklearn.linear_model.RidgeCV.html" title="8.15.1.4. sklearn.linear_model.RidgeCV"
+	    accesskey="N">Next
+	    <br>
+	    <span class="smallrellink">
+	    8.15.1.4. sklear...
+	    </span>
+	    <span class="hiddenrellink">
+	    8.15.1.4. sklearn.linear_model.RidgeCV
+	    </span>
+	    
+	    </a>
+	</div>
+	<!-- Ad a link to the 'up' page -->
+	<div class="spacer">
+	&nbsp;
+	</div>
+	<div class="rellink">
+	<a href="../model_selection.html" title="5. Model Selection" >
+	Up
+	<br>
+	<span class="smallrellink">
+	5. Model Selecti...
+	</span>
+	<span class="hiddenrellink">
+	5. Model Selection
+	</span>
+	
+	</a>
+	</div>
+    </div>
+    <p style="text-align: center">This documentation is
+    for scikit-learn <strong>version 0.11-git</strong>
+    &mdash; <a href="http://scikit-learn.org/stable/support.html#documentation-resources">Other versions</a></p>
+    
+    <h3>Citing</h3>
+    <p>If you use the software, please consider
+    <a href="../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
+    <h3>This page</h3>
+	<ul>
+<li><a class="reference internal" href="#">5.2. Grid Search</a><ul>
+<li><a class="reference internal" href="#gridsearchcv">5.2.1. GridSearchCV</a></li>
+<li><a class="reference internal" href="#examples">5.2.2. Examples</a></li>
+<li><a class="reference internal" href="#alternatives-to-brute-force-grid-search">5.2.3. Alternatives to brute force grid search</a><ul>
+<li><a class="reference internal" href="#model-specific-cross-validation">5.2.3.1. Model specific cross-validation</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#information-criterion">5.2.3.2. Information Criterion</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#out-of-bag-estimates">5.2.3.3. Out of Bag Estimates</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+    </div>
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="grid-search">
+<span id="id1"></span><h1>5.2. Grid Search<a class="headerlink" href="#grid-search" title="Permalink to this headline">¶</a></h1>
+<p>Grid Search is used to optimize the parameters of a model (e.g. <tt class="docutils literal"><span class="pre">C</span></tt>,
+<tt class="docutils literal"><span class="pre">kernel</span></tt> and <tt class="docutils literal"><span class="pre">gamma</span></tt> for Support Vector Classifier, <tt class="docutils literal"><span class="pre">alpha</span></tt> for
+Lasso, etc.) using an internal <a class="reference internal" href="cross_validation.html#cross-validation"><em>Cross-Validation</em></a> scheme).</p>
+<div class="section" id="gridsearchcv">
+<h2>5.2.1. GridSearchCV<a class="headerlink" href="#gridsearchcv" title="Permalink to this headline">¶</a></h2>
+<p>The main class for implementing hyperparameters grid search in
+scikit-learn is <a class="reference internal" href="generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">grid_search.GridSearchCV</span></tt></a>. This class is passed
+a base model instance (for example <tt class="docutils literal"><span class="pre">sklearn.svm.SVC()</span></tt>) along with a
+grid of potential hyper-parameter values such as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[{</span><span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s">&#39;gamma&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">],</span> <span class="s">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;rbf&#39;</span><span class="p">]},</span>
+ <span class="p">{</span><span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s">&#39;kernel&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;linear&#39;</span><span class="p">]}]</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="generated/sklearn.grid_search.GridSearchCV.html#sklearn.grid_search.GridSearchCV" title="sklearn.grid_search.GridSearchCV"><tt class="xref py py-class docutils literal"><span class="pre">grid_search.GridSearchCV</span></tt></a> instance implements the usual
+estimator API: when &#8220;fitting&#8221; it on a dataset all the possible
+combinations of hyperparameter values are evaluated and the best
+combinations is retained.</p>
+<div class="topic">
+<p class="topic-title first">Model selection: development and evaluation</p>
+<p>Model selection with <tt class="docutils literal"><span class="pre">GridSearchCV</span></tt> can be seen as a way to use the
+labeled data to &#8220;train&#8221; the hyper-parameters of the grid.</p>
+<p>When evaluating the resulting model it is important to do it on
+held-out samples that were not seen during the grid search process:
+it is recommended to split the data into a <strong>development set</strong> (to
+be fed to the <tt class="docutils literal"><span class="pre">GridSearchCV</span></tt> instance) and an <strong>evaluation set</strong>
+to compute performance metrics.</p>
+<p>This can be done by using the <a class="reference internal" href="generated/sklearn.cross_validation.train_test_split.html#sklearn.cross_validation.train_test_split" title="sklearn.cross_validation.train_test_split"><tt class="xref py py-func docutils literal"><span class="pre">cross_validation.train_test_split</span></tt></a>
+utility function.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>5.2.2. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>See <a class="reference internal" href="../auto_examples/grid_search_digits.html#example-grid-search-digits-py"><em>Parameter estimation using grid search with a nested cross-validation</em></a> for an example of
+Grid Search computation on the digits dataset.</li>
+<li>See <a class="reference internal" href="../auto_examples/grid_search_text_feature_extraction.html#example-grid-search-text-feature-extraction-py"><em>Sample pipeline for text feature extraction and evaluation</em></a> for an example
+of Grid Search coupling parameters from a text documents feature
+extractor (n-gram count vectorizer and TF-IDF transformer) with a
+classifier (here a linear SVM trained with SGD with either elastic
+net or L2 penalty) using a <a class="reference internal" href="generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline" title="sklearn.pipeline.Pipeline"><tt class="xref py py-class docutils literal"><span class="pre">pipeline.Pipeline</span></tt></a> instance.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Computations can be run in parallel if your OS supports it, by using
+the keyword n_jobs=-1, see function signature for more details.</p>
+</div>
+</div>
+<div class="section" id="alternatives-to-brute-force-grid-search">
+<h2>5.2.3. Alternatives to brute force grid search<a class="headerlink" href="#alternatives-to-brute-force-grid-search" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="model-specific-cross-validation">
+<h3>5.2.3.1. Model specific cross-validation<a class="headerlink" href="#model-specific-cross-validation" title="Permalink to this headline">¶</a></h3>
+<p>Some models can fit data for a range of value of some parameter almost
+as efficiently as fitting the estimator for a single value of the
+parameter. This feature can be leveraged to perform a more efficient
+cross-validation used for model selection of this parameter.</p>
+<p>The most common parameter amenable to this strategy is the parameter
+encoding the strength of the regularizer. In this case we say that we
+compute the <strong>regularization path</strong> of the estimator.</p>
+<p>Here is the list of such models:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.linear_model.RidgeCV.html#sklearn.linear_model.RidgeCV" title="sklearn.linear_model.RidgeCV"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.RidgeCV</span></tt></a>([alphas,&nbsp;...])</td>
+<td>Ridge regression with built-in cross-validation.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.linear_model.RidgeClassifierCV.html#sklearn.linear_model.RidgeClassifierCV" title="sklearn.linear_model.RidgeClassifierCV"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.RidgeClassifierCV</span></tt></a>([alphas,&nbsp;...])</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.linear_model.LarsCV.html#sklearn.linear_model.LarsCV" title="sklearn.linear_model.LarsCV"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.LarsCV</span></tt></a>([fit_intercept,&nbsp;...])</td>
+<td>Cross-validated Least Angle Regression model</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.linear_model.LassoLarsCV.html#sklearn.linear_model.LassoLarsCV" title="sklearn.linear_model.LassoLarsCV"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.LassoLarsCV</span></tt></a>([fit_intercept,&nbsp;...])</td>
+<td>Cross-validated Lasso, using the LARS algorithm</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.linear_model.LassoCV.html#sklearn.linear_model.LassoCV" title="sklearn.linear_model.LassoCV"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.LassoCV</span></tt></a>([eps,&nbsp;n_alphas,&nbsp;...])</td>
+<td>Lasso linear model with iterative fitting along a regularization path</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.linear_model.ElasticNetCV.html#sklearn.linear_model.ElasticNetCV" title="sklearn.linear_model.ElasticNetCV"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.ElasticNetCV</span></tt></a>([rho,&nbsp;eps,&nbsp;...])</td>
+<td>Elastic Net model with iterative fitting along a regularization path</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="information-criterion">
+<h3>5.2.3.2. Information Criterion<a class="headerlink" href="#information-criterion" title="Permalink to this headline">¶</a></h3>
+<p>Some models can offer an information-theoretic closed-form formula of the
+optimal estimate of the regularization parameter by computing a single
+regularization path (instead of several when using cross-validation).</p>
+<p>Here is the list of models benefitting from the Aikike Information
+Criterion (AIC) or the Bayesian Information Criterion (BIC) for automated
+model selection:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.linear_model.LassoLarsIC.html#sklearn.linear_model.LassoLarsIC" title="sklearn.linear_model.LassoLarsIC"><tt class="xref py py-obj docutils literal"><span class="pre">linear_model.LassoLarsIC</span></tt></a>([criterion,&nbsp;...])</td>
+<td>Lasso model fit with Lars using BIC or AIC for model selection</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="out-of-bag-estimates">
+<span id="out-of-bag"></span><h3>5.2.3.3. Out of Bag Estimates<a class="headerlink" href="#out-of-bag-estimates" title="Permalink to this headline">¶</a></h3>
+<p>When using ensemble methods base upon bagging, i.e. generating new
+training sets using sampling with replacement, part of the training set
+remains unused.  For each classifier in the ensemble, a different part
+of the training set is left out.</p>
+<p>This left out portion can be used to estimate the generalization error
+without having to rely on a separate validation set.  This estimate
+comes &#8220;for free&#8221; as no addictional data is needed and can be used for
+model selection.</p>
+<p>This is currently implemented in the following classes:</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier" title="sklearn.ensemble.RandomForestClassifier"><tt class="xref py py-obj docutils literal"><span class="pre">ensemble.RandomForestClassifier</span></tt></a>([...])</td>
+<td>A random forest classifier.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor" title="sklearn.ensemble.RandomForestRegressor"><tt class="xref py py-obj docutils literal"><span class="pre">ensemble.RandomForestRegressor</span></tt></a>([...])</td>
+<td>A random forest regressor.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/sklearn.ensemble.ExtraTreesClassifier.html#sklearn.ensemble.ExtraTreesClassifier" title="sklearn.ensemble.ExtraTreesClassifier"><tt class="xref py py-obj docutils literal"><span class="pre">ensemble.ExtraTreesClassifier</span></tt></a>([...])</td>
+<td>An extra-trees classifier.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/sklearn.ensemble.ExtraTreesRegressor.html#sklearn.ensemble.ExtraTreesRegressor" title="sklearn.ensemble.ExtraTreesRegressor"><tt class="xref py py-obj docutils literal"><span class="pre">ensemble.ExtraTreesRegressor</span></tt></a>([n_estimators,&nbsp;...])</td>
+<td>An extra-trees regressor.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2010–2011, scikit-learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    <span style="padding-left: 5ex;">
+    <a href="../_sources/modules/grid_search.txt"
+	    rel="nofollow">Show this page source</a>
+    </span>
+    </div>
+  </body>
+</html>
