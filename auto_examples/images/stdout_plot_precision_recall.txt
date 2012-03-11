@@ -1,0 +1,4 @@
+**Script output**::
+
+  Area Under Curve: 0.82
+

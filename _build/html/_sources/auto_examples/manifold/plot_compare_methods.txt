@@ -1,0 +1,36 @@
+
+
+.. _example_manifold_plot_compare_methods.py:
+
+
+=========================================
+ Comparison of Manifold Learning methods
+=========================================
+
+An illustration of dimensionality reduction on the S-curve dataset
+with various manifold learning methods.
+
+For a discussion and comparison of these algorithms, see the
+:ref:`manifold module page <manifold>`
+
+
+
+.. image:: images/plot_compare_methods_1.png
+    :align: center
+
+
+**Script output**::
+
+  standard: 0.15 sec
+  ltsa: 0.33 sec
+  hessian: 0.39 sec
+  modified: 0.34 sec
+  Isomap: 0.64 sec
+
+
+
+**Python source code:** :download:`plot_compare_methods.py <plot_compare_methods.py>`
+
+.. literalinclude:: plot_compare_methods.py
+    :lines: 12-
+    

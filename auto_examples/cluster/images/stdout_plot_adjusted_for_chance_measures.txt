@@ -1,0 +1,19 @@
+**Script output**::
+
+  Computing adjusted_rand_score for 10 values of n_clusters and n_samples=100
+  done in 0.159s
+  Computing v_measure_score for 10 values of n_clusters and n_samples=100
+  done in 1.598s
+  Computing adjusted_mutual_info_score for 10 values of n_clusters and n_samples=100
+  done in 5.993s
+  Computing mutual_info_score for 10 values of n_clusters and n_samples=100
+  done in 0.024s
+  Computing adjusted_rand_score for 10 values of n_clusters and n_samples=1000
+  done in 0.241s
+  Computing v_measure_score for 10 values of n_clusters and n_samples=1000
+  done in 0.653s
+  Computing adjusted_mutual_info_score for 10 values of n_clusters and n_samples=1000
+  done in 16.458s
+  Computing mutual_info_score for 10 values of n_clusters and n_samples=1000
+  done in 0.102s
+

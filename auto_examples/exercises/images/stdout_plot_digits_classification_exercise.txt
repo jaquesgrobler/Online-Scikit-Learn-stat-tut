@@ -1,0 +1,5 @@
+**Script output**::
+
+  KNN score: 0.961111111111
+  LogisticRegression score: 0.938888888889
+

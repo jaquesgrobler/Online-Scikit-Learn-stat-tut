@@ -1,0 +1,19 @@
+**Script output**::
+
+  ________________________________________________________________________________
+  Modeling distribution of species 'bradypus variegatus'
+   - fit OneClassSVM ...  done. 
+   - plot coastlines from coverage
+   - predict species distribution
+  
+   Area under the ROC curve : 0.865318
+  ________________________________________________________________________________
+  Modeling distribution of species 'microryzomys minutus'
+   - fit OneClassSVM ...  done. 
+   - plot coastlines from coverage
+   - predict species distribution
+  
+   Area under the ROC curve : 0.993920
+  
+  time elapsed: 9.22s
+

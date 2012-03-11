@@ -1,0 +1,4 @@
+**Script output**::
+
+  Classification score 0.393333333333 (pvalue : 0.0792079207921)
+

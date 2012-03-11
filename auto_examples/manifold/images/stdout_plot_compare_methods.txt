@@ -1,0 +1,8 @@
+**Script output**::
+
+  standard: 0.15 sec
+  ltsa: 0.33 sec
+  hessian: 0.39 sec
+  modified: 0.34 sec
+  Isomap: 0.64 sec
+
