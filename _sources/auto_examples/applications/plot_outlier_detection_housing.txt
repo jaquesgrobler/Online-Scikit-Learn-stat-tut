@@ -56,12 +56,12 @@ risk of over-fitting the data.
 
     *
 
-      .. image:: images/plot_outlier_detection_housing_2.png
+      .. image:: images/plot_outlier_detection_housing_1.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_outlier_detection_housing_1.png
+      .. image:: images/plot_outlier_detection_housing_2.png
             :scale: 47
 
 

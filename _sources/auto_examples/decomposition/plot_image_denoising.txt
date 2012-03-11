@@ -43,7 +43,12 @@ necessarily related to visualisation.
 
     *
 
-      .. image:: images/plot_image_denoising_5.png
+      .. image:: images/plot_image_denoising_2.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_image_denoising_3.png
             :scale: 47
 
     *
@@ -53,12 +58,7 @@ necessarily related to visualisation.
 
     *
 
-      .. image:: images/plot_image_denoising_2.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_image_denoising_3.png
+      .. image:: images/plot_image_denoising_5.png
             :scale: 47
 
     *
@@ -71,23 +71,23 @@ necessarily related to visualisation.
 
   Distorting image...
   Extracting clean patches...
-  done in 0.14s.
+  done in 0.45s.
   Learning the dictionary... 
-  done in 6.05s.
+  done in 18.13s.
   Extracting noisy patches... 
-  done in 0.22s.
+  done in 0.63s.
   Orthogonal Matching Pursuit
   1 atom ... 
-  done in 3.83s.
+  done in 12.58s.
   Orthogonal Matching Pursuit
   2 atoms ... 
-  done in 5.79s.
+  done in 18.06s.
   Least-angle regression
   5 atoms ... 
-  done in 30.96s.
+  done in 94.84s.
   Thresholding
    alpha=0.1 ... 
-  done in 0.48s.
+  done in 1.51s.
 
 
 

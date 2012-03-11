@@ -16,22 +16,7 @@ An illustration of various embeddings on the digits dataset.
 
     *
 
-      .. image:: images/plot_lle_digits_6.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_lle_digits_9.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_lle_digits_5.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_lle_digits_7.png
+      .. image:: images/plot_lle_digits_1.png
             :scale: 47
 
     *
@@ -41,7 +26,27 @@ An illustration of various embeddings on the digits dataset.
 
     *
 
+      .. image:: images/plot_lle_digits_3.png
+            :scale: 47
+
+    *
+
       .. image:: images/plot_lle_digits_4.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_lle_digits_5.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_lle_digits_6.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_lle_digits_7.png
             :scale: 47
 
     *
@@ -51,12 +56,7 @@ An illustration of various embeddings on the digits dataset.
 
     *
 
-      .. image:: images/plot_lle_digits_1.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_lle_digits_3.png
+      .. image:: images/plot_lle_digits_9.png
             :scale: 47
 
 

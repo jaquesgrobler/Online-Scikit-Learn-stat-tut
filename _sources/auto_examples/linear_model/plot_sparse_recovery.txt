@@ -49,7 +49,7 @@ precision-recall.
 
     *
 
-      .. image:: images/plot_sparse_recovery_3.png
+      .. image:: images/plot_sparse_recovery_1.png
             :scale: 47
 
     *
@@ -59,7 +59,7 @@ precision-recall.
 
     *
 
-      .. image:: images/plot_sparse_recovery_1.png
+      .. image:: images/plot_sparse_recovery_3.png
             :scale: 47
 
     *
