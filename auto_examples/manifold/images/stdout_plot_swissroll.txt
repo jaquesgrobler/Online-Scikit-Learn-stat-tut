@@ -1,5 +1,0 @@
-**Script output**::
-
-  Computing LLE embedding
-  Done. Reconstruction error: 1.27216e-07
-

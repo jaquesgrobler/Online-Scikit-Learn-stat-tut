@@ -1,4 +1,0 @@
-**Script output**::
-
-  Area under the ROC curve : 0.796296
-

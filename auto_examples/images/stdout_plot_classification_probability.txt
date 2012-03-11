@@ -1,6 +1,0 @@
-**Script output**::
-
-  classif_rate for Linear SVC : 76.000000 
-  classif_rate for L1 logistic : 33.333333 
-  classif_rate for L2 logistic : 56.666667
-

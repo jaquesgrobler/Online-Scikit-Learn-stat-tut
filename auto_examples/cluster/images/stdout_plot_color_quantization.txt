@@ -1,9 +1,0 @@
-**Script output**::
-
-  Fitting estimator on a small sub-sample of the data
-  done in 0.753s.
-  Predicting color indices on the full image (k-means)
-  done in 0.470s.
-  Predicting color indices on the full image (random)
-  done in 0.471s.
-
