@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; scikit-learn 0.11-git documentation</title>
+    <title>Cross-validation on Digits Dataset Exercise &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -29,8 +29,8 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
     <link rel="up" title="Examples" href="../index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="plot_digits_classification_exercise.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="plot_cv_diabetes.html" />
+    <link rel="next" title="Digits Classification Exercise" href="plot_digits_classification_exercise.html" />
+    <link rel="prev" title="Cross-validation on diabetes Dataset Exercise" href="plot_cv_diabetes.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="plot_cv_diabetes.html" title="&lt;no title&gt;"
+	<a href="plot_cv_diabetes.html" title="Cross-validation on diabetes Dataset Exercise"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    <no title>
+	    Cross-validation...
 	    </span>
 	    <span class="hiddenrellink">
-	    <no title>
+	    Cross-validation on diabetes Dataset Exercise
 	    </span>
 	    
 	    </a>
@@ -105,14 +105,14 @@
 	    </div>
 	
 	<div class="rellink">
-	<a href="plot_digits_classification_exercise.html" title="&lt;no title&gt;"
+	<a href="plot_digits_classification_exercise.html" title="Digits Classification Exercise"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    <no title>
+	    Digits Classific...
 	    </span>
 	    <span class="hiddenrellink">
-	    <no title>
+	    Digits Classification Exercise
 	    </span>
 	    
 	    </a>
@@ -143,7 +143,8 @@
     <p>If you use the software, please consider
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
-	<ul class="simple">
+	<ul>
+<li><a class="reference internal" href="#">Cross-validation on Digits Dataset Exercise</a></li>
 </ul>
 
     
@@ -155,9 +156,19 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <img alt="../../_images/plot_cv_digits_1.png" class="align-center" id="example-exercises-plot-cv-digits-py" src="../../_images/plot_cv_digits_1.png" />
+  <div class="section" id="cross-validation-on-digits-dataset-exercise">
+<span id="example-exercises-plot-cv-digits-py"></span><h1>Cross-validation on Digits Dataset Exercise<a class="headerlink" href="#cross-validation-on-digits-dataset-exercise" title="Permalink to this headline">¶</a></h1>
+<p>This exercise is used in the
+<a class="reference internal" href="../../tutorial/statistical_inference/model_selection.html#cv-generators-tut"><em>Cross-validation generators</em></a> part of the
+<a class="reference internal" href="../../tutorial/statistical_inference/model_selection.html#model-selection-tut"><em>Model selection: choosing estimators and their parameters</em></a> section of the
+<a class="reference internal" href="../../tutorial/statistical_inference/index.html#stat-learn-tut-index"><em>Statistical-learning for scientific data processing tutorial</em></a>.</p>
+<img alt="../../_images/plot_cv_digits_1.png" class="align-center" src="../../_images/plot_cv_digits_1.png" />
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../../_downloads/plot_cv_digits.py"><tt class="xref download docutils literal"><span class="pre">plot_cv_digits.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">svm</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">__doc__</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">svm</span>
 
 <span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span>
@@ -192,6 +203,7 @@
         <span class="p">)</span>
 <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 
 

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; scikit-learn 0.11-git documentation</title>
+    <title>Digits Classification Exercise &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -29,8 +29,8 @@
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
     <link rel="up" title="Examples" href="../index.html" />
-    <link rel="next" title="&lt;no title&gt;" href="plot_iris_exercise.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="plot_cv_digits.html" />
+    <link rel="next" title="SVM Exercise" href="plot_iris_exercise.html" />
+    <link rel="prev" title="Cross-validation on Digits Dataset Exercise" href="plot_cv_digits.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="plot_cv_digits.html" title="&lt;no title&gt;"
+	<a href="plot_cv_digits.html" title="Cross-validation on Digits Dataset Exercise"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    <no title>
+	    Cross-validation...
 	    </span>
 	    <span class="hiddenrellink">
-	    <no title>
+	    Cross-validation on Digits Dataset Exercise
 	    </span>
 	    
 	    </a>
@@ -105,14 +105,14 @@
 	    </div>
 	
 	<div class="rellink">
-	<a href="plot_iris_exercise.html" title="&lt;no title&gt;"
+	<a href="plot_iris_exercise.html" title="SVM Exercise"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    <no title>
+	    SVM Exercise
 	    </span>
 	    <span class="hiddenrellink">
-	    <no title>
+	    SVM Exercise
 	    </span>
 	    
 	    </a>
@@ -143,7 +143,8 @@
     <p>If you use the software, please consider
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
-	<ul class="simple">
+	<ul>
+<li><a class="reference internal" href="#">Digits Classification Exercise</a></li>
 </ul>
 
     
@@ -155,12 +156,22 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <p class="horizontal" id="example-exercises-plot-digits-classification-exercise-py"><strong>Script output</strong>:</p>
+  <div class="section" id="digits-classification-exercise">
+<span id="example-exercises-plot-digits-classification-exercise-py"></span><h1>Digits Classification Exercise<a class="headerlink" href="#digits-classification-exercise" title="Permalink to this headline">¶</a></h1>
+<p>This exercise is used in the
+<a class="reference internal" href="../../tutorial/statistical_inference/supervised_learning.html#clf-tut"><em>Classification</em></a> part of the
+<a class="reference internal" href="../../tutorial/statistical_inference/supervised_learning.html#supervised-learning-tut"><em>Supervised learning: predicting an output variable from high-dimensional observations</em></a> section of the
+<a class="reference internal" href="../../tutorial/statistical_inference/index.html#stat-learn-tut-index"><em>Statistical-learning for scientific data processing tutorial</em></a>.</p>
+<p class="horizontal"><strong>Script output</strong>:</p>
 <div class="highlight-python"><pre>KNN score: 0.961111111111
 LogisticRegression score: 0.938888888889</pre>
 </div>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../../_downloads/plot_digits_classification_exercise.py"><tt class="xref download docutils literal"><span class="pre">plot_digits_classification_exercise.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">__doc__</span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">,</span> <span class="n">linear_model</span>
+
+<span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
 <span class="n">X_digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span>
 <span class="n">y_digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
 
@@ -177,6 +188,7 @@ LogisticRegression score: 0.938888888889</pre>
 <span class="k">print</span> <span class="s">&#39;KNN score:&#39;</span><span class="p">,</span> <span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="k">print</span> <span class="s">&#39;LogisticRegression score:&#39;</span><span class="p">,</span> <span class="n">logistic</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 
 

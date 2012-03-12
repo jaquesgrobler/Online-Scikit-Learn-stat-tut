@@ -24,12 +24,12 @@ dataset.
 
     *
 
-      .. image:: images/plot_iris_classifiers_2.png
+      .. image:: images/plot_iris_classifiers_3.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_iris_classifiers_3.png
+      .. image:: images/plot_iris_classifiers_2.png
             :scale: 47
 
 

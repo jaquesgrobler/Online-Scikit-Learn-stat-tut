@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2. Supervised learning: predicting an output variable from high-dimensional observations &mdash; scikit-learn 0.11-git documentation</title>
+    <title>2.2.2. Supervised learning: predicting an output variable from high-dimensional observations &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -28,9 +28,9 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
-    <link rel="up" title="2.2. Statistical-learning for sientific data processing tutorial" href="index.html" />
-    <link rel="next" title="2.2.4.1. Excercice: classification of digits" href="digits_classification_exercise.html" />
-    <link rel="prev" title="1. Statistical learning: the setting and the estimator object in the scikit-learn" href="settings.html" />
+    <link rel="up" title="2.2. Statistical-learning for scientific data processing tutorial" href="index.html" />
+    <link rel="next" title="2.2.2.2.4.1. Excercice: classification of digits" href="digits_classification_exercise.html" />
+    <link rel="prev" title="2.2.1. Statistical learning: the setting and the estimator object in the scikit-learn" href="settings.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="settings.html" title="1. Statistical learning: the setting and the estimator object in the scikit-learn"
+	<a href="settings.html" title="2.2.1. Statistical learning: the setting and the estimator object in the scikit-learn"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    1. Statistical l...
+	    2.2.1. Statistic...
 	    </span>
 	    <span class="hiddenrellink">
-	    1. Statistical learning: the setting and the estimator object in the scikit-learn
+	    2.2.1. Statistical learning: the setting and the estimator object in the scikit-learn
 	    </span>
 	    
 	    </a>
@@ -105,14 +105,14 @@
 	    </div>
 	
 	<div class="rellink">
-	<a href="digits_classification_exercise.html" title="2.2.4.1. Excercice: classification of digits"
+	<a href="digits_classification_exercise.html" title="2.2.2.2.4.1. Excercice: classification of digits"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    2.2.4.1. Excerci...
+	    2.2.2.2.4.1. Exc...
 	    </span>
 	    <span class="hiddenrellink">
-	    2.2.4.1. Excercice: classification of digits
+	    2.2.2.2.4.1. Excercice: classification of digits
 	    </span>
 	    
 	    </a>
@@ -122,14 +122,14 @@
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="index.html" title="2.2. Statistical-learning for sientific data processing tutorial" >
+	<a href="index.html" title="2.2. Statistical-learning for scientific data processing tutorial" >
 	Up
 	<br>
 	<span class="smallrellink">
 	2.2. Statistical...
 	</span>
 	<span class="hiddenrellink">
-	2.2. Statistical-learning for sientific data processing tutorial
+	2.2. Statistical-learning for scientific data processing tutorial
 	</span>
 	
 	</a>
@@ -144,24 +144,24 @@
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
 	<ul>
-<li><a class="reference internal" href="#">2. Supervised learning: predicting an output variable from high-dimensional observations</a><ul>
-<li><a class="reference internal" href="#nearest-neighbor-and-the-curse-of-dimensionality">2.1. Nearest neighbor and the curse of dimensionality</a><ul>
-<li><a class="reference internal" href="#k-nearest-neighbors-classifier">2.1.1. k-Nearest neighbors classifier</a></li>
-<li><a class="reference internal" href="#the-curse-of-dimensionality">2.1.2. The curse of dimensionality</a></li>
+<li><a class="reference internal" href="#">2.2.2. Supervised learning: predicting an output variable from high-dimensional observations</a><ul>
+<li><a class="reference internal" href="#nearest-neighbor-and-the-curse-of-dimensionality">2.2.2.1. Nearest neighbor and the curse of dimensionality</a><ul>
+<li><a class="reference internal" href="#k-nearest-neighbors-classifier">2.2.2.1.1. k-Nearest neighbors classifier</a></li>
+<li><a class="reference internal" href="#the-curse-of-dimensionality">2.2.2.1.2. The curse of dimensionality</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#linear-model-from-regression-to-sparsity">2.2. Linear model: from regression to sparsity</a><ul>
-<li><a class="reference internal" href="#linear-regression">2.2.1. Linear regression</a></li>
-<li><a class="reference internal" href="#shrinkage">2.2.2. Shrinkage</a></li>
-<li><a class="reference internal" href="#sparsity">2.2.3. Sparsity</a></li>
-<li><a class="reference internal" href="#classification">2.2.4. Classification</a><ul>
+<li><a class="reference internal" href="#linear-model-from-regression-to-sparsity">2.2.2.2. Linear model: from regression to sparsity</a><ul>
+<li><a class="reference internal" href="#linear-regression">2.2.2.2.1. Linear regression</a></li>
+<li><a class="reference internal" href="#shrinkage">2.2.2.2.2. Shrinkage</a></li>
+<li><a class="reference internal" href="#sparsity">2.2.2.2.3. Sparsity</a></li>
+<li><a class="reference internal" href="#classification">2.2.2.2.4. Classification</a><ul>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#support-vector-machines-svms">2.3. Support vector machines (SVMs)</a><ul>
-<li><a class="reference internal" href="#linear-svms">2.3.1. Linear SVMs</a></li>
-<li><a class="reference internal" href="#using-kernels">2.3.2. Using kernels</a><ul>
+<li><a class="reference internal" href="#support-vector-machines-svms">2.2.2.3. Support vector machines (SVMs)</a><ul>
+<li><a class="reference internal" href="#linear-svms">2.2.2.3.1. Linear SVMs</a></li>
+<li><a class="reference internal" href="#using-kernels">2.2.2.3.2. Using kernels</a><ul>
 </ul>
 </li>
 </ul>
@@ -180,7 +180,7 @@
           <div class="body">
             
   <div class="section" id="supervised-learning-predicting-an-output-variable-from-high-dimensional-observations">
-<h1>2. Supervised learning: predicting an output variable from high-dimensional observations<a class="headerlink" href="#supervised-learning-predicting-an-output-variable-from-high-dimensional-observations" title="Permalink to this headline">¶</a></h1>
+<span id="supervised-learning-tut"></span><h1>2.2.2. Supervised learning: predicting an output variable from high-dimensional observations<a class="headerlink" href="#supervised-learning-predicting-an-output-variable-from-high-dimensional-observations" title="Permalink to this headline">¶</a></h1>
 <div class="topic">
 <p class="topic-title first">The problem solved in supervised learning</p>
 <p><a class="reference internal" href="../../supervised_learning.html#supervised-learning"><em>Supervised learning</em></a>
@@ -208,7 +208,7 @@ Tutorial</em></a> for a quick run-through on the basic machine
 learning vocabulary used within Scikit-learn.</p>
 </div>
 <div class="section" id="nearest-neighbor-and-the-curse-of-dimensionality">
-<h2>2.1. Nearest neighbor and the curse of dimensionality<a class="headerlink" href="#nearest-neighbor-and-the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.2.1. Nearest neighbor and the curse of dimensionality<a class="headerlink" href="#nearest-neighbor-and-the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title first">Classifying irises:</p>
 <a class="reference external image-reference" href="../../auto_examples/plot_iris_dataset.html"><img alt="../../_images/plot_iris_dataset_11.png" class="align-right" src="../../_images/plot_iris_dataset_11.png" style="width: 260.0px; height: 195.0px;" /></a>
@@ -226,7 +226,7 @@ their petal and sepal length and width:</p>
 </div>
 </div>
 <div class="section" id="k-nearest-neighbors-classifier">
-<h3>2.1.1. k-Nearest neighbors classifier<a class="headerlink" href="#k-nearest-neighbors-classifier" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.2.1.1. k-Nearest neighbors classifier<a class="headerlink" href="#k-nearest-neighbors-classifier" title="Permalink to this headline">¶</a></h3>
 <p>The simplest possible classifier is the
 <a class="reference external" href="http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm">nearest neighbor</a>:
 given a new observation <cite>x_test</cite>, find in the training set (i.e. the data
@@ -265,7 +265,7 @@ estimator on <strong>new data</strong>. This is why datasets are often split int
 </div>
 </div>
 <div class="section" id="the-curse-of-dimensionality">
-<span id="curse-of-dimensionality"></span><h3>2.1.2. The curse of dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h3>
+<span id="curse-of-dimensionality"></span><h3>2.2.2.1.2. The curse of dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h3>
 <p>If the data is only described by one feature, with values ranging from 0
 to 1, with <cite>n</cite> train observations, new data will be no further away than
 <cite>1/n</cite> and the nearest neighbor decision rule will be efficient as soon as
@@ -280,7 +280,7 @@ and is the core problem that machine learning addresses.</p>
 </div>
 </div>
 <div class="section" id="linear-model-from-regression-to-sparsity">
-<h2>2.2. Linear model: from regression to sparsity<a class="headerlink" href="#linear-model-from-regression-to-sparsity" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.2.2. Linear model: from regression to sparsity<a class="headerlink" href="#linear-model-from-regression-to-sparsity" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title first">Diabetes dataset</p>
 <p>The diabetes dataset consists of 10 physiological variables (age,
@@ -297,7 +297,7 @@ indication of disease progression after one year:</p>
 variables.</p>
 </div>
 <div class="section" id="linear-regression">
-<h3>2.2.1. Linear regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.2.2.1. Linear regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="../../modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression" title="sklearn.linear_model.LinearRegression"><tt class="xref py py-class docutils literal"><span class="pre">LinearRegression</span></tt></a>,
 in it&#8217;s simplest form, fits a linear model to the data set by adjusting
 a set of parameters, in order to make the sum of the squared residuals
@@ -333,7 +333,7 @@ of the model as small as possilbe.</p>
 </div>
 </div>
 <div class="section" id="shrinkage">
-<span id="id2"></span><h3>2.2.2. Shrinkage<a class="headerlink" href="#shrinkage" title="Permalink to this headline">¶</a></h3>
+<span id="id2"></span><h3>2.2.2.2.2. Shrinkage<a class="headerlink" href="#shrinkage" title="Permalink to this headline">¶</a></h3>
 <p>If there are few data points per dimension, noise in the observations
 induces high variance:</p>
 <a class="reference external image-reference" href="../../auto_examples/linear_model/plot_ols_ridge_variance.html"><img alt="../../_images/plot_ols_ridge_variance_11.png" class="align-right" src="../../_images/plot_ols_ridge_variance_11.png" style="width: 280.0px; height: 210.0px;" /></a>
@@ -391,7 +391,7 @@ by the ridge regression is called a
 </div>
 </div>
 <div class="section" id="sparsity">
-<span id="id3"></span><h3>2.2.3. Sparsity<a class="headerlink" href="#sparsity" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3>2.2.2.2.3. Sparsity<a class="headerlink" href="#sparsity" title="Permalink to this headline">¶</a></h3>
 <p class="centered"><strong>Fitting only features 1 and 2</strong></p>
 <p class="centered">
 <strong><a class="reference external image-reference" href="../../auto_examples/linear_model/plot_ols_3d.html"><img alt="diabetes_ols_1" src="../../_images/plot_ols_3d_11.png" style="width: 260.0px; height: 195.0px;" /></a>
@@ -446,7 +446,7 @@ sparse, that is problems with very few observations.</p>
 </div>
 </div>
 <div class="section" id="classification">
-<h3>2.2.4. Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
+<span id="clf-tut"></span><h3>2.2.2.2.4. Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
 <a class="reference external image-reference" href="../../auto_examples/linear_model/plot_logistic.html"><img alt="../../_images/plot_logistic_11.png" class="align-right" src="../../_images/plot_logistic_11.png" style="width: 260.0px; height: 195.0px;" /></a>
 <p>For classification, as in the labeling
 <a class="reference external" href="http://en.wikipedia.org/wiki/Iris_flower_data_set">iris</a> task, linear
@@ -485,16 +485,16 @@ model. Leave out the last 10% and test prediction performance on these
 observations.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="digits_classification_exercise.html">2.2.4.1. Excercice: classification of digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digits_classification_exercise.html">2.2.2.2.4.1. Excercice: classification of digits</a></li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="support-vector-machines-svms">
-<h2>2.3. Support vector machines (SVMs)<a class="headerlink" href="#support-vector-machines-svms" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.2.3. Support vector machines (SVMs)<a class="headerlink" href="#support-vector-machines-svms" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="linear-svms">
-<h3>2.3.1. Linear SVMs<a class="headerlink" href="#linear-svms" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.2.3.1. Linear SVMs<a class="headerlink" href="#linear-svms" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="../../modules/svm.html#svm"><em>Support Vector Machines</em></a> belong to the discrimant model family: they try to find a combination of
 samples to build a plane maximizing the margin between the two classes.
 Regularization is set by the <cite>C</cite> parameter: the small the choice of <cite>C</cite>,
@@ -538,7 +538,7 @@ prediction.</p>
 </div>
 </div>
 <div class="section" id="using-kernels">
-<h3>2.3.2. Using kernels<a class="headerlink" href="#using-kernels" title="Permalink to this headline">¶</a></h3>
+<span id="using-kernels-tut"></span><h3>2.2.2.3.2. Using kernels<a class="headerlink" href="#using-kernels" title="Permalink to this headline">¶</a></h3>
 <p>Classes are not always separable in feature space. The solution is to
 build a decision function that is not linear but that may be for instance
 polynomial. This is done using the <em>kernel trick</em> that can be seen as
@@ -601,7 +601,7 @@ performance on these observations.</p>
 <p>The solution is available below:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="iris_classification_exercise.html">2.3.2.1. Exercise: classification of iris</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris_classification_exercise.html">2.2.2.3.2.1. Exercise: classification of iris</a></li>
 </ul>
 </div>
 <p><strong>Warning</strong>: the classes are ordered, do not leave out the last 10%,

@@ -33,12 +33,12 @@ randomly) is also shown.
 
     *
 
-      .. image:: images/plot_color_quantization_2.png
+      .. image:: images/plot_color_quantization_3.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_color_quantization_3.png
+      .. image:: images/plot_color_quantization_2.png
             :scale: 47
 
 

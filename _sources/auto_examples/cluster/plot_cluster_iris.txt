@@ -24,12 +24,7 @@ and finally the ground truth.
 
     *
 
-      .. image:: images/plot_cluster_iris_1.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_cluster_iris_2.png
+      .. image:: images/plot_cluster_iris_4.png
             :scale: 47
 
     *
@@ -39,7 +34,12 @@ and finally the ground truth.
 
     *
 
-      .. image:: images/plot_cluster_iris_4.png
+      .. image:: images/plot_cluster_iris_1.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_cluster_iris_2.png
             :scale: 47
 
 

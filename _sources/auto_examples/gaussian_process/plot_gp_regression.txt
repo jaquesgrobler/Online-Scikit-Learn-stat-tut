@@ -35,12 +35,12 @@ to a normalized variance:  That is
 
     *
 
-      .. image:: images/plot_gp_regression_1.png
+      .. image:: images/plot_gp_regression_2.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_gp_regression_2.png
+      .. image:: images/plot_gp_regression_1.png
             :scale: 47
 
 

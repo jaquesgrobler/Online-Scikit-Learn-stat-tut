@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2.2.4.1. Excercice: classification of digits &mdash; scikit-learn 0.11-git documentation</title>
+    <title>2.2.2.2.4.1. Excercice: classification of digits &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -28,9 +28,9 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
-    <link rel="up" title="2. Supervised learning: predicting an output variable from high-dimensional observations" href="supervised_learning.html" />
-    <link rel="next" title="2.3.2.1. Exercise: classification of iris" href="iris_classification_exercise.html" />
-    <link rel="prev" title="2. Supervised learning: predicting an output variable from high-dimensional observations" href="supervised_learning.html" />
+    <link rel="up" title="2.2.2. Supervised learning: predicting an output variable from high-dimensional observations" href="supervised_learning.html" />
+    <link rel="next" title="2.2.2.3.2.1. Exercise: classification of iris" href="iris_classification_exercise.html" />
+    <link rel="prev" title="2.2.2. Supervised learning: predicting an output variable from high-dimensional observations" href="supervised_learning.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="supervised_learning.html" title="2. Supervised learning: predicting an output variable from high-dimensional observations"
+	<a href="supervised_learning.html" title="2.2.2. Supervised learning: predicting an output variable from high-dimensional observations"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    2. Supervised le...
+	    2.2.2. Supervise...
 	    </span>
 	    <span class="hiddenrellink">
-	    2. Supervised learning: predicting an output variable from high-dimensional observations
+	    2.2.2. Supervised learning: predicting an output variable from high-dimensional observations
 	    </span>
 	    
 	    </a>
@@ -105,14 +105,14 @@
 	    </div>
 	
 	<div class="rellink">
-	<a href="iris_classification_exercise.html" title="2.3.2.1. Exercise: classification of iris"
+	<a href="iris_classification_exercise.html" title="2.2.2.3.2.1. Exercise: classification of iris"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    2.3.2.1. Exercis...
+	    2.2.2.3.2.1. Exe...
 	    </span>
 	    <span class="hiddenrellink">
-	    2.3.2.1. Exercise: classification of iris
+	    2.2.2.3.2.1. Exercise: classification of iris
 	    </span>
 	    
 	    </a>
@@ -122,14 +122,14 @@
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="supervised_learning.html" title="2. Supervised learning: predicting an output variable from high-dimensional observations" >
+	<a href="supervised_learning.html" title="2.2.2. Supervised learning: predicting an output variable from high-dimensional observations" >
 	Up
 	<br>
 	<span class="smallrellink">
-	2. Supervised le...
+	2.2.2. Supervise...
 	</span>
 	<span class="hiddenrellink">
-	2. Supervised learning: predicting an output variable from high-dimensional observations
+	2.2.2. Supervised learning: predicting an output variable from high-dimensional observations
 	</span>
 	
 	</a>
@@ -144,7 +144,7 @@
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
 	<ul>
-<li><a class="reference internal" href="#">2.2.4.1. Excercice: classification of digits</a></li>
+<li><a class="reference internal" href="#">2.2.2.2.4.1. Excercice: classification of digits</a></li>
 </ul>
 
     
@@ -157,13 +157,13 @@
           <div class="body">
             
   <div class="section" id="excercice-classification-of-digits">
-<h1>2.2.4.1. Excercice: classification of digits<a class="headerlink" href="#excercice-classification-of-digits" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">,</span> <span class="n">linear_model</span>
+<h1>2.2.2.2.4.1. Excercice: classification of digits<a class="headerlink" href="#excercice-classification-of-digits" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><pre>"""
+================================
+Digits Classification Exercise
+================================
 
-<span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
-<span class="n">X_digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span>
-<span class="n">y_digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
-</pre></div>
+</pre>
 </div>
 <p>Solution: <a class="reference download internal" href="../../_downloads/plot_digits_classification_exercise1.py"><tt class="xref download docutils literal"><span class="pre">../../auto_examples/exercises/plot_digits_classification_exercise.py</span></tt></a></p>
 </div>

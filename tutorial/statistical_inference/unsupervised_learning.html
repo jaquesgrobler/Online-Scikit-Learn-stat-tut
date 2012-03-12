@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4. Unsupervised learning: seeking representations of the data &mdash; scikit-learn 0.11-git documentation</title>
+    <title>2.2.4. Unsupervised learning: seeking representations of the data &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -28,9 +28,9 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
-    <link rel="up" title="2.2. Statistical-learning for sientific data processing tutorial" href="index.html" />
-    <link rel="next" title="5. Putting it all together" href="putting_together.html" />
-    <link rel="prev" title="3.3.2.1. Exercise: setting sparsity on diabetes" href="diabetes_cv_exercise.html" />
+    <link rel="up" title="2.2. Statistical-learning for scientific data processing tutorial" href="index.html" />
+    <link rel="next" title="2.2.5. Putting it all together" href="putting_together.html" />
+    <link rel="prev" title="2.2.3.3.2.1. Exercise: setting sparsity on diabetes" href="diabetes_cv_exercise.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="diabetes_cv_exercise.html" title="3.3.2.1. Exercise: setting sparsity on diabetes"
+	<a href="diabetes_cv_exercise.html" title="2.2.3.3.2.1. Exercise: setting sparsity on diabetes"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    3.3.2.1. Exercis...
+	    2.2.3.3.2.1. Exe...
 	    </span>
 	    <span class="hiddenrellink">
-	    3.3.2.1. Exercise: setting sparsity on diabetes
+	    2.2.3.3.2.1. Exercise: setting sparsity on diabetes
 	    </span>
 	    
 	    </a>
@@ -105,14 +105,14 @@
 	    </div>
 	
 	<div class="rellink">
-	<a href="putting_together.html" title="5. Putting it all together"
+	<a href="putting_together.html" title="2.2.5. Putting it all together"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    5. Putting it al...
+	    2.2.5. Putting i...
 	    </span>
 	    <span class="hiddenrellink">
-	    5. Putting it all together
+	    2.2.5. Putting it all together
 	    </span>
 	    
 	    </a>
@@ -122,14 +122,14 @@
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="index.html" title="2.2. Statistical-learning for sientific data processing tutorial" >
+	<a href="index.html" title="2.2. Statistical-learning for scientific data processing tutorial" >
 	Up
 	<br>
 	<span class="smallrellink">
 	2.2. Statistical...
 	</span>
 	<span class="hiddenrellink">
-	2.2. Statistical-learning for sientific data processing tutorial
+	2.2. Statistical-learning for scientific data processing tutorial
 	</span>
 	
 	</a>
@@ -144,19 +144,19 @@
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
 	<ul>
-<li><a class="reference internal" href="#">4. Unsupervised learning: seeking representations of the data</a><ul>
-<li><a class="reference internal" href="#clustering-grouping-observations-together">4.1. Clustering: grouping observations together</a><ul>
-<li><a class="reference internal" href="#k-means-clustering">4.1.1. K-means clustering</a></li>
-<li><a class="reference internal" href="#hierarchical-clustering-ward">4.1.2. Hierarchical clustering: Ward</a><ul>
-<li><a class="reference internal" href="#connectivity-constrained-clustering">4.1.2.1. Connectivity-constrained clustering</a></li>
-<li><a class="reference internal" href="#feature-agglomeration">4.1.2.2. Feature agglomeration</a></li>
+<li><a class="reference internal" href="#">2.2.4. Unsupervised learning: seeking representations of the data</a><ul>
+<li><a class="reference internal" href="#clustering-grouping-observations-together">2.2.4.1. Clustering: grouping observations together</a><ul>
+<li><a class="reference internal" href="#k-means-clustering">2.2.4.1.1. K-means clustering</a></li>
+<li><a class="reference internal" href="#hierarchical-clustering-ward">2.2.4.1.2. Hierarchical clustering: Ward</a><ul>
+<li><a class="reference internal" href="#connectivity-constrained-clustering">2.2.4.1.2.1. Connectivity-constrained clustering</a></li>
+<li><a class="reference internal" href="#feature-agglomeration">2.2.4.1.2.2. Feature agglomeration</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#decompositions-from-a-signal-to-components-and-loadings">4.2. Decompositions: from a signal to components and loadings</a><ul>
-<li><a class="reference internal" href="#principal-component-analysis-pca">4.2.1. Principal component analysis: PCA</a></li>
-<li><a class="reference internal" href="#indenpendant-component-analysis-ica">4.2.2. Indenpendant Component Analysis: ICA</a></li>
+<li><a class="reference internal" href="#decompositions-from-a-signal-to-components-and-loadings">2.2.4.2. Decompositions: from a signal to components and loadings</a><ul>
+<li><a class="reference internal" href="#principal-component-analysis-pca">2.2.4.2.1. Principal component analysis: PCA</a></li>
+<li><a class="reference internal" href="#indenpendant-component-analysis-ica">2.2.4.2.2. Indenpendant Component Analysis: ICA</a></li>
 </ul>
 </li>
 </ul>
@@ -173,9 +173,9 @@
           <div class="body">
             
   <div class="section" id="unsupervised-learning-seeking-representations-of-the-data">
-<h1>4. Unsupervised learning: seeking representations of the data<a class="headerlink" href="#unsupervised-learning-seeking-representations-of-the-data" title="Permalink to this headline">¶</a></h1>
+<h1>2.2.4. Unsupervised learning: seeking representations of the data<a class="headerlink" href="#unsupervised-learning-seeking-representations-of-the-data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="clustering-grouping-observations-together">
-<h2>4.1. Clustering: grouping observations together<a class="headerlink" href="#clustering-grouping-observations-together" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.4.1. Clustering: grouping observations together<a class="headerlink" href="#clustering-grouping-observations-together" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title first">The problem solved in clustering</p>
 <p>Given the iris dataset, if we knew that there were 3 types of iris, but
@@ -184,7 +184,7 @@ did not have access to a taxonomist to label them: we could try a
 called <em>clusters</em>.</p>
 </div>
 <div class="section" id="k-means-clustering">
-<h3>4.1.1. K-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.4.1.1. K-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">¶</a></h3>
 <p>Note that their exists a lot of different clustering criteria and associated
 algorithms. The simplest clustering algorithm is the
 <a class="reference internal" href="../../modules/clustering.html#k-means"><em>K-means</em></a>.</p>
@@ -271,7 +271,7 @@ For instance, this can be used to posterize an image:</p>
 </div>
 </div>
 <div class="section" id="hierarchical-clustering-ward">
-<h3>4.1.2. Hierarchical clustering: Ward<a class="headerlink" href="#hierarchical-clustering-ward" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.4.1.2. Hierarchical clustering: Ward<a class="headerlink" href="#hierarchical-clustering-ward" title="Permalink to this headline">¶</a></h3>
 <p>For estimating a large number of clusters, top-down approaches are both
 statisticaly ill-posed, and slow. <a class="reference internal" href="../../modules/clustering.html#hierarchical-clustering"><em>Hierarchical clustering</em></a> is a bottom-up
 approach that successively merges observations together and is
@@ -280,7 +280,7 @@ observations. <em>Ward</em> clustering minimizes a criterion similar to k-means
 in a bottom-up approach. When the number of clusters is large, it is much
 more computationally efficient than k-means.</p>
 <div class="section" id="connectivity-constrained-clustering">
-<h4>4.1.2.1. Connectivity-constrained clustering<a class="headerlink" href="#connectivity-constrained-clustering" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.4.1.2.1. Connectivity-constrained clustering<a class="headerlink" href="#connectivity-constrained-clustering" title="Permalink to this headline">¶</a></h4>
 <p>With Ward clustering, it is possible to specify which samples can be
 clustered together by giving a connectivity graph. Graphs in the scikit
 are represented by their adjacency matrix. Often a sparse matrix is used.
@@ -312,7 +312,7 @@ clustering an image:</p>
 </div>
 </div>
 <div class="section" id="feature-agglomeration">
-<h4>4.1.2.2. Feature agglomeration<a class="headerlink" href="#feature-agglomeration" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.4.1.2.2. Feature agglomeration<a class="headerlink" href="#feature-agglomeration" title="Permalink to this headline">¶</a></h4>
 <p>We have seen that sparsity could be used to mitigate the curse of
 dimensionality, <em>i.e</em> the insufficience of observations compared to the
 number of features. Another approach is to merge together similar
@@ -344,7 +344,7 @@ the dimensionality of the dataset.</p>
 </div>
 </div>
 <div class="section" id="decompositions-from-a-signal-to-components-and-loadings">
-<h2>4.2. Decompositions: from a signal to components and loadings<a class="headerlink" href="#decompositions-from-a-signal-to-components-and-loadings" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.4.2. Decompositions: from a signal to components and loadings<a class="headerlink" href="#decompositions-from-a-signal-to-components-and-loadings" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title first"><strong>Components and loadings</strong></p>
 <p>If X is our multivariate data, the problem that we are trying to solve
@@ -353,7 +353,7 @@ loadings L and a set of components C such that <em>X = L C</em>.
 Different criteria exist to choose the components</p>
 </div>
 <div class="section" id="principal-component-analysis-pca">
-<h3>4.2.1. Principal component analysis: PCA<a class="headerlink" href="#principal-component-analysis-pca" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.4.2.1. Principal component analysis: PCA<a class="headerlink" href="#principal-component-analysis-pca" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="../../modules/decomposition.html#pca"><em>Principal component analysis (PCA)</em></a> selects the successive components that
 explain the maximum variance in the signal.</p>
 <p class="centered"><a class="reference external" href="../../auto_examples/decomposition/plot_pca_3d.html"><img alt="pca_3d_axis" src="../../_images/plot_pca_3d_11.png" style="width: 280.0px; height: 210.0px;" /></a> <a class="reference external" href="../../auto_examples/decomposition/plot_pca_3d.html"><img alt="pca_3d_aligned" src="../../_images/plot_pca_3d_21.png" style="width: 280.0px; height: 210.0px;" /></a></p>
@@ -385,7 +385,7 @@ data by projecting on a principal subspace.</p>
 </div>
 </div>
 <div class="section" id="indenpendant-component-analysis-ica">
-<h3>4.2.2. Indenpendant Component Analysis: ICA<a class="headerlink" href="#indenpendant-component-analysis-ica" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.4.2.2. Indenpendant Component Analysis: ICA<a class="headerlink" href="#indenpendant-component-analysis-ica" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="../../modules/decomposition.html#ica"><em>Independent component analysis (ICA)</em></a> selects components so that the distribution of their loadings carries
 a maximum amount of independant information. It is able to recover
 <strong>non-Gaussian</strong> independant signals:</p>

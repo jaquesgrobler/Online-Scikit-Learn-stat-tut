@@ -18,12 +18,12 @@ how `k`-means is used for vector quantization.
 
     *
 
-      .. image:: images/plot_lena_compress_1.png
+      .. image:: images/plot_lena_compress_4.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_lena_compress_2.png
+      .. image:: images/plot_lena_compress_1.png
             :scale: 47
 
     *
@@ -33,7 +33,7 @@ how `k`-means is used for vector quantization.
 
     *
 
-      .. image:: images/plot_lena_compress_4.png
+      .. image:: images/plot_lena_compress_2.png
             :scale: 47
 
 

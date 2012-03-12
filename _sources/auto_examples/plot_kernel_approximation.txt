@@ -43,12 +43,12 @@ The usage of :class:`RBFSampler` is described in detail in
 
     *
 
-      .. image:: images/plot_kernel_approximation_1.png
+      .. image:: images/plot_kernel_approximation_2.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_kernel_approximation_2.png
+      .. image:: images/plot_kernel_approximation_1.png
             :scale: 47
 
 

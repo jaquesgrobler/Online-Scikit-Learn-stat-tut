@@ -31,12 +31,12 @@ value of k on various overlapping sub-samples of the dataset.
 
     *
 
-      .. image:: images/plot_adjusted_for_chance_measures_1.png
+      .. image:: images/plot_adjusted_for_chance_measures_2.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_adjusted_for_chance_measures_2.png
+      .. image:: images/plot_adjusted_for_chance_measures_1.png
             :scale: 47
 
 

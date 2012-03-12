@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. Model selection: choosing estimators and their parameters &mdash; scikit-learn 0.11-git documentation</title>
+    <title>2.2.3. Model selection: choosing estimators and their parameters &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -28,9 +28,9 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
-    <link rel="up" title="2.2. Statistical-learning for sientific data processing tutorial" href="index.html" />
-    <link rel="next" title="3.2.1. Exercise: model selection on digits" href="digits_cv_exercise.html" />
-    <link rel="prev" title="2.3.2.1. Exercise: classification of iris" href="iris_classification_exercise.html" />
+    <link rel="up" title="2.2. Statistical-learning for scientific data processing tutorial" href="index.html" />
+    <link rel="next" title="2.2.3.2.1. Exercise: model selection on digits" href="digits_cv_exercise.html" />
+    <link rel="prev" title="2.2.2.3.2.1. Exercise: classification of iris" href="iris_classification_exercise.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="iris_classification_exercise.html" title="2.3.2.1. Exercise: classification of iris"
+	<a href="iris_classification_exercise.html" title="2.2.2.3.2.1. Exercise: classification of iris"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    2.3.2.1. Exercis...
+	    2.2.2.3.2.1. Exe...
 	    </span>
 	    <span class="hiddenrellink">
-	    2.3.2.1. Exercise: classification of iris
+	    2.2.2.3.2.1. Exercise: classification of iris
 	    </span>
 	    
 	    </a>
@@ -105,14 +105,14 @@
 	    </div>
 	
 	<div class="rellink">
-	<a href="digits_cv_exercise.html" title="3.2.1. Exercise: model selection on digits"
+	<a href="digits_cv_exercise.html" title="2.2.3.2.1. Exercise: model selection on digits"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    3.2.1. Exercise:...
+	    2.2.3.2.1. Exerc...
 	    </span>
 	    <span class="hiddenrellink">
-	    3.2.1. Exercise: model selection on digits
+	    2.2.3.2.1. Exercise: model selection on digits
 	    </span>
 	    
 	    </a>
@@ -122,14 +122,14 @@
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="index.html" title="2.2. Statistical-learning for sientific data processing tutorial" >
+	<a href="index.html" title="2.2. Statistical-learning for scientific data processing tutorial" >
 	Up
 	<br>
 	<span class="smallrellink">
 	2.2. Statistical...
 	</span>
 	<span class="hiddenrellink">
-	2.2. Statistical-learning for sientific data processing tutorial
+	2.2. Statistical-learning for scientific data processing tutorial
 	</span>
 	
 	</a>
@@ -144,14 +144,14 @@
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
 	<ul>
-<li><a class="reference internal" href="#">3. Model selection: choosing estimators and their parameters</a><ul>
-<li><a class="reference internal" href="#score-and-cross-validated-scores">3.1. Score, and cross-validated scores</a></li>
-<li><a class="reference internal" href="#cross-validation-generators">3.2. Cross-validation generators</a><ul>
+<li><a class="reference internal" href="#">2.2.3. Model selection: choosing estimators and their parameters</a><ul>
+<li><a class="reference internal" href="#score-and-cross-validated-scores">2.2.3.1. Score, and cross-validated scores</a></li>
+<li><a class="reference internal" href="#cross-validation-generators">2.2.3.2. Cross-validation generators</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#grid-search-and-cross-validated-estimators">3.3. Grid-search and cross-validated estimators</a><ul>
-<li><a class="reference internal" href="#grid-search">3.3.1. Grid-search</a></li>
-<li><a class="reference internal" href="#cross-validated-estimators">3.3.2. Cross-validated estimators</a><ul>
+<li><a class="reference internal" href="#grid-search-and-cross-validated-estimators">2.2.3.3. Grid-search and cross-validated estimators</a><ul>
+<li><a class="reference internal" href="#grid-search">2.2.3.3.1. Grid-search</a></li>
+<li><a class="reference internal" href="#cross-validated-estimators">2.2.3.3.2. Cross-validated estimators</a><ul>
 </ul>
 </li>
 </ul>
@@ -170,9 +170,9 @@
           <div class="body">
             
   <div class="section" id="model-selection-choosing-estimators-and-their-parameters">
-<h1>3. Model selection: choosing estimators and their parameters<a class="headerlink" href="#model-selection-choosing-estimators-and-their-parameters" title="Permalink to this headline">¶</a></h1>
+<span id="model-selection-tut"></span><h1>2.2.3. Model selection: choosing estimators and their parameters<a class="headerlink" href="#model-selection-choosing-estimators-and-their-parameters" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="score-and-cross-validated-scores">
-<h2>3.1. Score, and cross-validated scores<a class="headerlink" href="#score-and-cross-validated-scores" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.3.1. Score, and cross-validated scores<a class="headerlink" href="#score-and-cross-validated-scores" title="Permalink to this headline">¶</a></h2>
 <p>As we have seen, every estimator exposes a <cite>score</cite> method that can judge
 the quality of the fit (or the prediction) on new data. <strong>Bigger is
 better</strong>.</p>
@@ -208,7 +208,7 @@ data in <em>folds</em> that we use for training and testing:</p>
 <p>This is called a <a class="reference internal" href="../../modules/generated/sklearn.cross_validation.KFold.html#sklearn.cross_validation.KFold" title="sklearn.cross_validation.KFold"><tt class="xref py py-class docutils literal"><span class="pre">KFold</span></tt></a> cross validation</p>
 </div>
 <div class="section" id="cross-validation-generators">
-<h2>3.2. Cross-validation generators<a class="headerlink" href="#cross-validation-generators" title="Permalink to this headline">¶</a></h2>
+<span id="cv-generators-tut"></span><h2>2.2.3.2. Cross-validation generators<a class="headerlink" href="#cross-validation-generators" title="Permalink to this headline">¶</a></h2>
 <p>The code above to split data in train and test sets is tedious to write.
 The <cite>sklearn</cite> exposes cross-validation generators to generate list
 of indices for this purpose:</p>
@@ -266,15 +266,15 @@ estimator with an RBF kernel as a function of parameter <cite>C</cite> (use a
 logarithmic grid of points, from <cite>1</cite> to <cite>10</cite>).</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="digits_cv_exercise.html">3.2.1. Exercise: model selection on digits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digits_cv_exercise.html">2.2.3.2.1. Exercise: model selection on digits</a></li>
 </ul>
 </div>
 </div>
 </div>
 <div class="section" id="grid-search-and-cross-validated-estimators">
-<h2>3.3. Grid-search and cross-validated estimators<a class="headerlink" href="#grid-search-and-cross-validated-estimators" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.3.3. Grid-search and cross-validated estimators<a class="headerlink" href="#grid-search-and-cross-validated-estimators" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="grid-search">
-<h3>3.3.1. Grid-search<a class="headerlink" href="#grid-search" title="Permalink to this headline">¶</a></h3>
+<h3>2.2.3.3.1. Grid-search<a class="headerlink" href="#grid-search" title="Permalink to this headline">¶</a></h3>
 <p>The sklearn provides an object that, given data, computes the score
 during the fit of an estimator on a parameter grid and chooses the
 parameters to maximize the cross-validation score. This object takes an
@@ -317,7 +317,7 @@ than 1).</p>
 </div>
 </div>
 <div class="section" id="cross-validated-estimators">
-<h3>3.3.2. Cross-validated estimators<a class="headerlink" href="#cross-validated-estimators" title="Permalink to this headline">¶</a></h3>
+<span id="cv-estimators-tut"></span><h3>2.2.3.3.2. Cross-validated estimators<a class="headerlink" href="#cross-validated-estimators" title="Permalink to this headline">¶</a></h3>
 <p>Cross-validation to set a parameter can be done more efficiently on an
 algorithm-by-algorithm basis. This is why, for certain estimators, the
 sklearn exposes <a class="reference internal" href="../../modules/cross_validation.html#cross-validation"><em>Cross-Validation</em></a> estimators, that set their parameter
@@ -346,7 +346,7 @@ alpha.</p>
 <p><strong>Bonus</strong>: How much can you trust the selection of alpha?</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="diabetes_cv_exercise.html">3.3.2.1. Exercise: setting sparsity on diabetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diabetes_cv_exercise.html">2.2.3.3.2.1. Exercise: setting sparsity on diabetes</a></li>
 </ul>
 </div>
 </div>

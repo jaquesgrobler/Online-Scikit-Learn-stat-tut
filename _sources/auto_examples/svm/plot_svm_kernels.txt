@@ -24,12 +24,12 @@ data-points are not linearly seperable.
 
     *
 
-      .. image:: images/plot_svm_kernels_2.png
+      .. image:: images/plot_svm_kernels_3.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_svm_kernels_3.png
+      .. image:: images/plot_svm_kernels_2.png
             :scale: 47
 
 

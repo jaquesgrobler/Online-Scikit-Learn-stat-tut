@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.2.1. Exercise: model selection on digits &mdash; scikit-learn 0.11-git documentation</title>
+    <title>2.2.3.2.1. Exercise: model selection on digits &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -28,9 +28,9 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
-    <link rel="up" title="3. Model selection: choosing estimators and their parameters" href="model_selection.html" />
-    <link rel="next" title="3.3.2.1. Exercise: setting sparsity on diabetes" href="diabetes_cv_exercise.html" />
-    <link rel="prev" title="3. Model selection: choosing estimators and their parameters" href="model_selection.html" />
+    <link rel="up" title="2.2.3. Model selection: choosing estimators and their parameters" href="model_selection.html" />
+    <link rel="next" title="2.2.3.3.2.1. Exercise: setting sparsity on diabetes" href="diabetes_cv_exercise.html" />
+    <link rel="prev" title="2.2.3. Model selection: choosing estimators and their parameters" href="model_selection.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="model_selection.html" title="3. Model selection: choosing estimators and their parameters"
+	<a href="model_selection.html" title="2.2.3. Model selection: choosing estimators and their parameters"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    3. Model selecti...
+	    2.2.3. Model sel...
 	    </span>
 	    <span class="hiddenrellink">
-	    3. Model selection: choosing estimators and their parameters
+	    2.2.3. Model selection: choosing estimators and their parameters
 	    </span>
 	    
 	    </a>
@@ -105,14 +105,14 @@
 	    </div>
 	
 	<div class="rellink">
-	<a href="diabetes_cv_exercise.html" title="3.3.2.1. Exercise: setting sparsity on diabetes"
+	<a href="diabetes_cv_exercise.html" title="2.2.3.3.2.1. Exercise: setting sparsity on diabetes"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    3.3.2.1. Exercis...
+	    2.2.3.3.2.1. Exe...
 	    </span>
 	    <span class="hiddenrellink">
-	    3.3.2.1. Exercise: setting sparsity on diabetes
+	    2.2.3.3.2.1. Exercise: setting sparsity on diabetes
 	    </span>
 	    
 	    </a>
@@ -122,14 +122,14 @@
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="model_selection.html" title="3. Model selection: choosing estimators and their parameters" >
+	<a href="model_selection.html" title="2.2.3. Model selection: choosing estimators and their parameters" >
 	Up
 	<br>
 	<span class="smallrellink">
-	3. Model selecti...
+	2.2.3. Model sel...
 	</span>
 	<span class="hiddenrellink">
-	3. Model selection: choosing estimators and their parameters
+	2.2.3. Model selection: choosing estimators and their parameters
 	</span>
 	
 	</a>
@@ -144,7 +144,7 @@
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
 	<ul>
-<li><a class="reference internal" href="#">3.2.1. Exercise: model selection on digits</a></li>
+<li><a class="reference internal" href="#">2.2.3.2.1. Exercise: model selection on digits</a></li>
 </ul>
 
     
@@ -157,17 +157,17 @@
           <div class="body">
             
   <div class="section" id="exercise-model-selection-on-digits">
-<span id="digits-cv-ex"></span><h1>3.2.1. Exercise: model selection on digits<a class="headerlink" href="#exercise-model-selection-on-digits" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">svm</span>
+<span id="digits-cv-ex"></span><h1>2.2.3.2.1. Exercise: model selection on digits<a class="headerlink" href="#exercise-model-selection-on-digits" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><pre>"""
+=============================================
+Cross-validation on Digits Dataset Exercise
+=============================================
 
-<span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
-
-<span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
-<span class="n">C_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-</pre></div>
+This exercise is used in the
+:ref:`cv_generators_tut` part of the 
+:ref:`model_selection_tut` section of the
+:ref:`stat_learn_tut_index`.
+</pre>
 </div>
 <p>Solution: <a class="reference download internal" href="../../_downloads/plot_cv_digits1.py"><tt class="xref download docutils literal"><span class="pre">../../auto_examples/exercises/plot_cv_digits.py</span></tt></a></p>
 </div>

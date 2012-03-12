@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.3.2.1. Exercise: setting sparsity on diabetes &mdash; scikit-learn 0.11-git documentation</title>
+    <title>2.2.3.3.2.1. Exercise: setting sparsity on diabetes &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -28,9 +28,9 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
-    <link rel="up" title="3. Model selection: choosing estimators and their parameters" href="model_selection.html" />
-    <link rel="next" title="4. Unsupervised learning: seeking representations of the data" href="unsupervised_learning.html" />
-    <link rel="prev" title="3.2.1. Exercise: model selection on digits" href="digits_cv_exercise.html" />
+    <link rel="up" title="2.2.3. Model selection: choosing estimators and their parameters" href="model_selection.html" />
+    <link rel="next" title="2.2.4. Unsupervised learning: seeking representations of the data" href="unsupervised_learning.html" />
+    <link rel="prev" title="2.2.3.2.1. Exercise: model selection on digits" href="digits_cv_exercise.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="digits_cv_exercise.html" title="3.2.1. Exercise: model selection on digits"
+	<a href="digits_cv_exercise.html" title="2.2.3.2.1. Exercise: model selection on digits"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    3.2.1. Exercise:...
+	    2.2.3.2.1. Exerc...
 	    </span>
 	    <span class="hiddenrellink">
-	    3.2.1. Exercise: model selection on digits
+	    2.2.3.2.1. Exercise: model selection on digits
 	    </span>
 	    
 	    </a>
@@ -105,14 +105,14 @@
 	    </div>
 	
 	<div class="rellink">
-	<a href="unsupervised_learning.html" title="4. Unsupervised learning: seeking representations of the data"
+	<a href="unsupervised_learning.html" title="2.2.4. Unsupervised learning: seeking representations of the data"
 	    accesskey="N">Next
 	    <br>
 	    <span class="smallrellink">
-	    4. Unsupervised ...
+	    2.2.4. Unsupervi...
 	    </span>
 	    <span class="hiddenrellink">
-	    4. Unsupervised learning: seeking representations of the data
+	    2.2.4. Unsupervised learning: seeking representations of the data
 	    </span>
 	    
 	    </a>
@@ -122,14 +122,14 @@
 	&nbsp;
 	</div>
 	<div class="rellink">
-	<a href="model_selection.html" title="3. Model selection: choosing estimators and their parameters" >
+	<a href="model_selection.html" title="2.2.3. Model selection: choosing estimators and their parameters" >
 	Up
 	<br>
 	<span class="smallrellink">
-	3. Model selecti...
+	2.2.3. Model sel...
 	</span>
 	<span class="hiddenrellink">
-	3. Model selection: choosing estimators and their parameters
+	2.2.3. Model selection: choosing estimators and their parameters
 	</span>
 	
 	</a>
@@ -144,7 +144,7 @@
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
 	<ul>
-<li><a class="reference internal" href="#">3.3.2.1. Exercise: setting sparsity on diabetes</a></li>
+<li><a class="reference internal" href="#">2.2.3.3.2.1. Exercise: setting sparsity on diabetes</a></li>
 </ul>
 
     
@@ -157,19 +157,20 @@
           <div class="body">
             
   <div class="section" id="exercise-setting-sparsity-on-diabetes">
-<h1>3.3.2.1. Exercise: setting sparsity on diabetes<a class="headerlink" href="#exercise-setting-sparsity-on-diabetes" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<h1>2.2.3.3.2.1. Exercise: setting sparsity on diabetes<a class="headerlink" href="#exercise-setting-sparsity-on-diabetes" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">===============================================</span>
+<span class="sd">Cross-validation on diabetes Dataset Exercise</span>
+<span class="sd">===============================================</span>
+
+<span class="sd">This exercise is used in the</span>
+<span class="sd">:ref:`cv_estimators_tut` part of the </span>
+<span class="sd">:ref:`model_selection_tut` section of the</span>
+<span class="sd">:ref:`stat_learn_tut_index`.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">print</span> <span class="n">__doc__</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
-
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span><span class="p">,</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">linear_model</span>
-
-<span class="n">diabetes</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_diabetes</span><span class="p">()</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">diabetes</span><span class="o">.</span><span class="n">data</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">diabetes</span><span class="o">.</span><span class="n">target</span>
-
-<span class="n">lasso</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Lasso</span><span class="p">()</span>
-
-<span class="n">alphas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Solution: <a class="reference download internal" href="../../_downloads/plot_cv_diabetes1.py"><tt class="xref download docutils literal"><span class="pre">../../auto_examples/exercises/plot_cv_diabetes.py</span></tt></a></p>

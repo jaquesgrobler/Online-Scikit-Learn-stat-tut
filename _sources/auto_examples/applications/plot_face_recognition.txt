@@ -36,12 +36,12 @@ Expected results for the top 5 most represented people in the dataset::
 
     *
 
-      .. image:: images/plot_face_recognition_1.png
+      .. image:: images/plot_face_recognition_2.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_face_recognition_2.png
+      .. image:: images/plot_face_recognition_1.png
             :scale: 47
 
 

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; scikit-learn 0.11-git documentation</title>
+    <title>SVM Exercise &mdash; scikit-learn 0.11-git documentation</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <link rel="top" title="scikit-learn 0.11-git documentation" href="../../index.html" />
     <link rel="up" title="Examples" href="../index.html" />
     <link rel="next" title="Gaussian Processes classification example: exploiting the probabilistic output" href="../gaussian_process/plot_gp_probabilistic_classification_after_regression.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="plot_digits_classification_exercise.html" />
+    <link rel="prev" title="Digits Classification Exercise" href="plot_digits_classification_exercise.html" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -88,14 +88,14 @@
 	<!-- rellinks[1:] is an ugly hack to avoid link to module
 	    index  -->
 	<div class="rellink">
-	<a href="plot_digits_classification_exercise.html" title="&lt;no title&gt;"
+	<a href="plot_digits_classification_exercise.html" title="Digits Classification Exercise"
 	    accesskey="P">Previous
 	    <br>
 	    <span class="smallrellink">
-	    <no title>
+	    Digits Classific...
 	    </span>
 	    <span class="hiddenrellink">
-	    <no title>
+	    Digits Classification Exercise
 	    </span>
 	    
 	    </a>
@@ -143,7 +143,8 @@
     <p>If you use the software, please consider
     <a href="../../about.html#citing-scikit-learn">citing scikit-learn</a>.</p>
     <h3>This page</h3>
-	<ul class="simple">
+	<ul>
+<li><a class="reference internal" href="#">SVM Exercise</a></li>
 </ul>
 
     
@@ -155,16 +156,25 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <ul class="horizontal" id="example-exercises-plot-iris-exercise-py">
-<li><a class="first reference internal image-reference" href="../../_images/plot_iris_exercise_0.png"><img alt="../../_images/plot_iris_exercise_0.png" src="../../_images/plot_iris_exercise_0.png" style="width: 376.0px; height: 282.0px;" /></a>
-</li>
+  <div class="section" id="svm-exercise">
+<span id="example-exercises-plot-iris-exercise-py"></span><h1>SVM Exercise<a class="headerlink" href="#svm-exercise" title="Permalink to this headline">¶</a></h1>
+<p>This exercise is used in the
+<a class="reference internal" href="../../tutorial/statistical_inference/supervised_learning.html#using-kernels-tut"><em>Using kernels</em></a> part of the
+<a class="reference internal" href="../../tutorial/statistical_inference/supervised_learning.html#supervised-learning-tut"><em>Supervised learning: predicting an output variable from high-dimensional observations</em></a> section of the
+<a class="reference internal" href="../../tutorial/statistical_inference/index.html#stat-learn-tut-index"><em>Statistical-learning for scientific data processing tutorial</em></a>.</p>
+<ul class="horizontal">
 <li><a class="first reference internal image-reference" href="../../_images/plot_iris_exercise_1.png"><img alt="../../_images/plot_iris_exercise_1.png" src="../../_images/plot_iris_exercise_1.png" style="width: 376.0px; height: 282.0px;" /></a>
 </li>
 <li><a class="first reference internal image-reference" href="../../_images/plot_iris_exercise_2.png"><img alt="../../_images/plot_iris_exercise_2.png" src="../../_images/plot_iris_exercise_2.png" style="width: 376.0px; height: 282.0px;" /></a>
 </li>
 </ul>
 <p><strong>Python source code:</strong> <a class="reference download internal" href="../../_downloads/plot_iris_exercise.py"><tt class="xref download docutils literal"><span class="pre">plot_iris_exercise.py</span></tt></a></p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">__doc__</span>
+
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
 <span class="kn">from</span> <span class="nn">scikits.learn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">svm</span>
 
 <span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
@@ -222,6 +232,7 @@
 
     <span class="n">pl</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">kernel</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 
 

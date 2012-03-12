@@ -52,12 +52,12 @@ data.
 
     *
 
-      .. image:: images/plot_lasso_model_selection_1.png
+      .. image:: images/plot_lasso_model_selection_2.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_lasso_model_selection_2.png
+      .. image:: images/plot_lasso_model_selection_1.png
             :scale: 47
 
     *

@@ -23,12 +23,12 @@ the margins to be calculated using all the data in the area.
 
     *
 
-      .. image:: images/plot_svm_margin_1.png
+      .. image:: images/plot_svm_margin_2.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_svm_margin_2.png
+      .. image:: images/plot_svm_margin_1.png
             :scale: 47
 
 

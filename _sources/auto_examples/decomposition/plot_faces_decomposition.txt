@@ -20,7 +20,7 @@ chapter :ref:`decompositions`) .
 
     *
 
-      .. image:: images/plot_faces_decomposition_1.png
+      .. image:: images/plot_faces_decomposition_3.png
             :scale: 47
 
     *
@@ -30,12 +30,17 @@ chapter :ref:`decompositions`) .
 
     *
 
-      .. image:: images/plot_faces_decomposition_3.png
+      .. image:: images/plot_faces_decomposition_4.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_faces_decomposition_4.png
+      .. image:: images/plot_faces_decomposition_7.png
+            :scale: 47
+
+    *
+
+      .. image:: images/plot_faces_decomposition_1.png
             :scale: 47
 
     *
@@ -46,11 +51,6 @@ chapter :ref:`decompositions`) .
     *
 
       .. image:: images/plot_faces_decomposition_6.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_faces_decomposition_7.png
             :scale: 47
 
 
