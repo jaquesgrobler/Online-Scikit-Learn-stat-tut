@@ -19,7 +19,7 @@ Computes path on IRIS dataset.
 **Script output**::
 
   Computing regularization path ...
-  This took  0:00:00.112897
+  This took  0:00:00.037830
 
 
 

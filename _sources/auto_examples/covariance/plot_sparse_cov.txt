@@ -59,12 +59,12 @@ iteratively refined in the neighborhood of the maximum.
 
     *
 
-      .. image:: images/plot_sparse_cov_2.png
+      .. image:: images/plot_sparse_cov_1.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_sparse_cov_1.png
+      .. image:: images/plot_sparse_cov_2.png
             :scale: 47
 
 

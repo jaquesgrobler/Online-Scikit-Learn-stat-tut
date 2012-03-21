@@ -20,7 +20,7 @@ for each segmented region to be in one piece.
 **Script output**::
 
   Compute structured hierarchical clustering...
-  Elaspsed time:  54.9709899426
+  Elaspsed time:  18.0488831997
   Number of pixels:  65536
   Number of clusters:  15
 

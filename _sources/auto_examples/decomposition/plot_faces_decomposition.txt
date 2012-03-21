@@ -20,7 +20,7 @@ chapter :ref:`decompositions`) .
 
     *
 
-      .. image:: images/plot_faces_decomposition_3.png
+      .. image:: images/plot_faces_decomposition_1.png
             :scale: 47
 
     *
@@ -30,17 +30,12 @@ chapter :ref:`decompositions`) .
 
     *
 
+      .. image:: images/plot_faces_decomposition_3.png
+            :scale: 47
+
+    *
+
       .. image:: images/plot_faces_decomposition_4.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_faces_decomposition_7.png
-            :scale: 47
-
-    *
-
-      .. image:: images/plot_faces_decomposition_1.png
             :scale: 47
 
     *
@@ -53,22 +48,27 @@ chapter :ref:`decompositions`) .
       .. image:: images/plot_faces_decomposition_6.png
             :scale: 47
 
+    *
+
+      .. image:: images/plot_faces_decomposition_7.png
+            :scale: 47
+
 
 **Script output**::
 
   Dataset consists of 400 faces
   Extracting the top 6 Eigenfaces - RandomizedPCA...
-  done in 0.554s
+  done in 0.198s
   Extracting the top 6 Non-negative components - NMF...
-  done in 2.404s
+  done in 0.841s
   Extracting the top 6 Independent components - FastICA...
-  done in 4.148s
+  done in 1.503s
   Extracting the top 6 Sparse comp. - MiniBatchSparsePCA...
-  done in 3.199s
+  done in 1.112s
   Extracting the top 6 MiniBatchDictionaryLearning...
-  done in 2.563s
+  done in 0.923s
   Extracting the top 6 Cluster centers - MiniBatchKMeans...
-  done in 0.692s
+  done in 0.266s
 
 
 

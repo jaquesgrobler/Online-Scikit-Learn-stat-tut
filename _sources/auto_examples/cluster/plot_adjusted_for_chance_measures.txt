@@ -31,33 +31,33 @@ value of k on various overlapping sub-samples of the dataset.
 
     *
 
-      .. image:: images/plot_adjusted_for_chance_measures_2.png
+      .. image:: images/plot_adjusted_for_chance_measures_1.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_adjusted_for_chance_measures_1.png
+      .. image:: images/plot_adjusted_for_chance_measures_2.png
             :scale: 47
 
 
 **Script output**::
 
   Computing adjusted_rand_score for 10 values of n_clusters and n_samples=100
-  done in 0.601s
+  done in 0.176s
   Computing v_measure_score for 10 values of n_clusters and n_samples=100
-  done in 5.698s
+  done in 1.618s
   Computing adjusted_mutual_info_score for 10 values of n_clusters and n_samples=100
-  done in 21.102s
+  done in 5.827s
   Computing mutual_info_score for 10 values of n_clusters and n_samples=100
-  done in 0.087s
+  done in 0.023s
   Computing adjusted_rand_score for 10 values of n_clusters and n_samples=1000
-  done in 0.899s
+  done in 0.254s
   Computing v_measure_score for 10 values of n_clusters and n_samples=1000
-  done in 2.415s
+  done in 0.650s
   Computing adjusted_mutual_info_score for 10 values of n_clusters and n_samples=1000
-  done in 57.299s
+  done in 15.673s
   Computing mutual_info_score for 10 values of n_clusters and n_samples=1000
-  done in 0.373s
+  done in 0.109s
 
 
 

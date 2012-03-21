@@ -19,12 +19,12 @@ would come in to choose a direction that is not flat.
 
     *
 
-      .. image:: images/plot_pca_3d_2.png
+      .. image:: images/plot_pca_3d_1.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_pca_3d_1.png
+      .. image:: images/plot_pca_3d_2.png
             :scale: 47
 
 

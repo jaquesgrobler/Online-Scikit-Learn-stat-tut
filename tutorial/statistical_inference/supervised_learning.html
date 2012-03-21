@@ -229,7 +229,7 @@ their petal and sepal length and width:</p>
 <h3>2.2.2.1.1. k-Nearest neighbors classifier<a class="headerlink" href="#k-nearest-neighbors-classifier" title="Permalink to this headline">¶</a></h3>
 <p>The simplest possible classifier is the
 <a class="reference external" href="http://en.wikipedia.org/wiki/K-nearest_neighbor_algorithm">nearest neighbor</a>:
-given a new observation <cite>x_test</cite>, find in the training set (i.e. the data
+given a new observation <tt class="docutils literal"><span class="pre">X_test</span></tt>, find in the training set (i.e. the data
 used to train the estimator) the observation with the closest feature vector.
 (Please see the <a class="reference internal" href="../../modules/neighbors.html#neighbors"><em>Nearest Neighbors section</em></a> of the online
 Scikit-learn documentation for more information about this type of classifier.)</p>
@@ -266,17 +266,25 @@ estimator on <strong>new data</strong>. This is why datasets are often split int
 </div>
 <div class="section" id="the-curse-of-dimensionality">
 <span id="curse-of-dimensionality"></span><h3>2.2.2.1.2. The curse of dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h3>
-<p>If the data is only described by one feature, with values ranging from 0
-to 1, with <cite>n</cite> train observations, new data will be no further away than
-<cite>1/n</cite> and the nearest neighbor decision rule will be efficient as soon as
+<p>For an estimator to be effective, you need the distance between neighboring
+points to be less than some value <cite>d</cite>, which depends on the problem.
+In one dimension, this requires on average <cite>n ~ 1/d</cite> points.
+In the context of the above <cite>KNN</cite> example, if the data is only described by
+one feature, with values ranging from 0 to 1 and with <cite>n</cite> training observations,
+new data will thus be no further away than <cite>1/n</cite>.
+Therefore, the nearest neighbor decision rule will be efficient as soon as
 <cite>1/n</cite> is small compared to the scale of between-class feature variations.</p>
-<p>If the number of features is <cite>p</cite>, the number of training samples to pave
-the <cite>[0, 1]</cite> space with a between-point distance of <cite>d</cite>, is <cite>1/d**p</cite>.
-This number scales exponentialy <cite>p</cite>, the dimensionality of the problem.</p>
-<p>In other words, the prediction problem becomes much harder for
-high-dimensional data. This is called the
+<p>If the number of features is <cite>p</cite>, you now require <cite>n ~ 1/d^p</cite> points.
+Let&#8217;s say that we require 10 points in one dimension: Now <cite>10^p</cite> points
+are required in <cite>p</cite> dimensions to pave the <cite>[0, 1]</cite> space.
+As <cite>p</cite> becomes large, the number of training points required for a good
+estimator grows exponentially.</p>
+<p>For example, if each point is just a single number (8 bytes), then an
+effective <cite>KNN</cite> estimator in a paltry <cite>p~20</cite> dimensions would require more training
+data than the current estimated size of the entire internet! (±1000 Exabytes or so).</p>
+<p>This is called the
 <a class="reference external" href="http://en.wikipedia.org/wiki/Curse_of_dimensionality">curse of dimensionality</a>
-and is the core problem that machine learning addresses.</p>
+and is a core problem that machine learning addresses.</p>
 </div>
 </div>
 <div class="section" id="linear-model-from-regression-to-sparsity">
@@ -539,7 +547,7 @@ prediction.</p>
 </div>
 <div class="section" id="using-kernels">
 <span id="using-kernels-tut"></span><h3>2.2.2.3.2. Using kernels<a class="headerlink" href="#using-kernels" title="Permalink to this headline">¶</a></h3>
-<p>Classes are not always separable in feature space. The solution is to
+<p>Classes are not always linearly separable in feature space. The solution is to
 build a decision function that is not linear but that may be for instance
 polynomial. This is done using the <em>kernel trick</em> that can be seen as
 creating an decision energy by positioning <em>kernels</em> on observations:</p>

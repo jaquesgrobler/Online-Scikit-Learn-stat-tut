@@ -36,12 +36,12 @@ Expected results for the top 5 most represented people in the dataset::
 
     *
 
-      .. image:: images/plot_face_recognition_2.png
+      .. image:: images/plot_face_recognition_1.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_face_recognition_1.png
+      .. image:: images/plot_face_recognition_2.png
             :scale: 47
 
 
@@ -52,17 +52,17 @@ Expected results for the top 5 most represented people in the dataset::
   n_features: 1850
   n_classes: 7
   Extracting the top 150 eigenfaces from 966 faces
-  done in 3.543s
+  done in 0.957s
   Projecting the input data on the eigenfaces orthonormal basis
-  done in 0.414s
+  done in 0.102s
   Fitting the classifier to the training set
-  done in 81.568s
+  done in 24.331s
   Best estimator found by grid search:
   SVC(C=1000.0, cache_size=200, class_weight=auto, coef0=0.0, degree=3,
     gamma=0.005, kernel=rbf, probability=False, scale_C=True, shrinking=True,
     tol=0.001)
   Predicting the people names on the testing set
-  done in 0.274s
+  done in 0.075s
                      precision    recall  f1-score   support
   
        Ariel Sharon       0.94      0.62      0.75        24

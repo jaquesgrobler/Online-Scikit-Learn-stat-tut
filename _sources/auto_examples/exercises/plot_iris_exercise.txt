@@ -19,6 +19,11 @@ This exercise is used in the
 
     *
 
+      .. image:: images/plot_iris_exercise_0.png
+            :scale: 47
+
+    *
+
       .. image:: images/plot_iris_exercise_1.png
             :scale: 47
 

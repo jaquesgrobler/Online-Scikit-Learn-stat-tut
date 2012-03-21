@@ -33,23 +33,23 @@ randomly) is also shown.
 
     *
 
-      .. image:: images/plot_color_quantization_3.png
+      .. image:: images/plot_color_quantization_2.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_color_quantization_2.png
+      .. image:: images/plot_color_quantization_3.png
             :scale: 47
 
 
 **Script output**::
 
   Fitting estimator on a small sub-sample of the data
-  done in 2.781s.
+  done in 0.746s.
   Predicting color indices on the full image (k-means)
-  done in 1.614s.
+  done in 0.466s.
   Predicting color indices on the full image (random)
-  done in 1.439s.
+  done in 0.470s.
 
 
 

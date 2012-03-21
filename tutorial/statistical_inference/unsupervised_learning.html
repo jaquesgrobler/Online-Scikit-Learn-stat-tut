@@ -147,7 +147,7 @@
 <li><a class="reference internal" href="#">2.2.4. Unsupervised learning: seeking representations of the data</a><ul>
 <li><a class="reference internal" href="#clustering-grouping-observations-together">2.2.4.1. Clustering: grouping observations together</a><ul>
 <li><a class="reference internal" href="#k-means-clustering">2.2.4.1.1. K-means clustering</a></li>
-<li><a class="reference internal" href="#hierarchical-clustering-ward">2.2.4.1.2. Hierarchical clustering: Ward</a><ul>
+<li><a class="reference internal" href="#hierarchical-agglomerative-clustering-ward">2.2.4.1.2. Hierarchical agglomerative clustering: Ward</a><ul>
 <li><a class="reference internal" href="#connectivity-constrained-clustering">2.2.4.1.2.1. Connectivity-constrained clustering</a></li>
 <li><a class="reference internal" href="#feature-agglomeration">2.2.4.1.2.2. Feature agglomeration</a></li>
 </ul>
@@ -156,7 +156,7 @@
 </li>
 <li><a class="reference internal" href="#decompositions-from-a-signal-to-components-and-loadings">2.2.4.2. Decompositions: from a signal to components and loadings</a><ul>
 <li><a class="reference internal" href="#principal-component-analysis-pca">2.2.4.2.1. Principal component analysis: PCA</a></li>
-<li><a class="reference internal" href="#indenpendant-component-analysis-ica">2.2.4.2.2. Indenpendant Component Analysis: ICA</a></li>
+<li><a class="reference internal" href="#independent-component-analysis-ica">2.2.4.2.2. Independent Component Analysis: ICA</a></li>
 </ul>
 </li>
 </ul>
@@ -270,15 +270,25 @@ For instance, this can be used to posterize an image:</p>
 </table>
 </div>
 </div>
-<div class="section" id="hierarchical-clustering-ward">
-<h3>2.2.4.1.2. Hierarchical clustering: Ward<a class="headerlink" href="#hierarchical-clustering-ward" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="hierarchical-agglomerative-clustering-ward">
+<h3>2.2.4.1.2. Hierarchical agglomerative clustering: Ward<a class="headerlink" href="#hierarchical-agglomerative-clustering-ward" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference internal" href="../../modules/clustering.html#hierarchical-clustering"><em>Hierarchical clustering</em></a> method is a type of cluster analysis
+that aims to build a hierarchy of clusters. In general, the various approaches
+of this technique are either:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Agglomerative</strong> - <cite>bottom-up</cite> approaches, or</li>
+<li><strong>Divisive</strong> - <cite>top-down</cite> approaches.</li>
+</ul>
+</div></blockquote>
 <p>For estimating a large number of clusters, top-down approaches are both
-statisticaly ill-posed, and slow. <a class="reference internal" href="../../modules/clustering.html#hierarchical-clustering"><em>Hierarchical clustering</em></a> is a bottom-up
-approach that successively merges observations together and is
-particularly useful when the clusters of interest are made of only a few
-observations. <em>Ward</em> clustering minimizes a criterion similar to k-means
-in a bottom-up approach. When the number of clusters is large, it is much
-more computationally efficient than k-means.</p>
+statisticaly ill-posed, and slow - due to it starting with all observations
+as one cluster, which it splits recursively. Agglomerative
+hierarchical-clustering is a bottom-up approach that successively merges
+observations together and is particularly useful when the clusters of interest
+are made of only a few observations. <em>Ward</em> clustering minimizes a criterion
+similar to k-means in a bottom-up approach. When the number of clusters is large,
+it is much more computationally efficient than k-means.</p>
 <div class="section" id="connectivity-constrained-clustering">
 <h4>2.2.4.1.2.1. Connectivity-constrained clustering<a class="headerlink" href="#connectivity-constrained-clustering" title="Permalink to this headline">¶</a></h4>
 <p>With Ward clustering, it is possible to specify which samples can be
@@ -384,11 +394,11 @@ data by projecting on a principal subspace.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="indenpendant-component-analysis-ica">
-<h3>2.2.4.2.2. Indenpendant Component Analysis: ICA<a class="headerlink" href="#indenpendant-component-analysis-ica" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="independent-component-analysis-ica">
+<h3>2.2.4.2.2. Independent Component Analysis: ICA<a class="headerlink" href="#independent-component-analysis-ica" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="../../modules/decomposition.html#ica"><em>Independent component analysis (ICA)</em></a> selects components so that the distribution of their loadings carries
-a maximum amount of independant information. It is able to recover
-<strong>non-Gaussian</strong> independant signals:</p>
+a maximum amount of independent information. It is able to recover
+<strong>non-Gaussian</strong> independent signals:</p>
 <a class="reference external image-reference" href="../../auto_examples/decomposition/plot_ica_blind_source_separation.html"><img alt="../../_images/plot_ica_blind_source_separation_12.png" class="align-center" src="../../_images/plot_ica_blind_source_separation_12.png" style="width: 560.0px; height: 420.0px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># Generate sample data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>

@@ -32,12 +32,12 @@ clusters widely spaced.
 
     *
 
-      .. image:: images/plot_kmeans_stability_low_dim_dense_2.png
+      .. image:: images/plot_kmeans_stability_low_dim_dense_1.png
             :scale: 47
 
     *
 
-      .. image:: images/plot_kmeans_stability_low_dim_dense_1.png
+      .. image:: images/plot_kmeans_stability_low_dim_dense_2.png
             :scale: 47
 
 
